@@ -1,11 +1,9 @@
-# webpack-template
-React and webpack 4 template
+# sourdough-calculator
+Counts your souroudgh percentages!
 
-Install all dependencies
-
+- Install all dependencies
 <code>npm install</code>
 
-Run dev server
-
+- Run dev server
 <code>npm run dev</code>
 
