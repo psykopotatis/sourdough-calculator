@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Header from './Header';
+import Footer from './Footer';
 import Star from './Star';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
-import InputField from "./InputField";
-import GoogleMap from "./GoogleMap";
+import Content from "./Content";
 import sum from './sum';
 
 console.log('yo');
@@ -21,11 +21,11 @@ function Welcome(props) {
 function App() {
     return (
         <div>
-            <Header/>
-            <InputField/>
-            <GoogleMap/>
-            <Button>adsf</Button>
-            <Star/>
+            <div className="container">
+                <Header/>
+                <Content/>
+                <Footer/>
+            </div>        
         </div>
     );
 }

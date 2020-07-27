@@ -1,11 +1,11 @@
 import React from 'react';
-import './Header.less';
+import './Footer.less';
 
 
 export default class extends React.Component {
     render() {
         return (
-            <h1>Header!</h1>
+            <h1>Footer!</h1>
         );
     }
 }
