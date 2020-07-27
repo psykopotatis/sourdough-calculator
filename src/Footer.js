@@ -5,7 +5,11 @@ import './Footer.less';
 export default class extends React.Component {
     render() {
         return (
-            <h1>Footer!</h1>
+            <div className="row">
+                <div className="col-sm">
+                    <h1>Footer!</h1>
+                </div>
+            </div>
         );
     }
 }
