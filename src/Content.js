@@ -24,16 +24,21 @@ class InputField extends Component {
 
     handleClick(e) {
         e.preventDefault();
-        console.log('click');
         console.table(this.state);
-        this.calculateGrams();
+        if (this.state.toGrams) {
+            this.calculateGrams();
+        } else {
+            this.calculatePercentages();
+        }
     };
 
     calculateGrams() {
         console.log('calculateGrams');
+
         const water = this.state.flour * (this.state.waterPercent / 100);
         const sourdough = this.state.flour * (this.state.sourdoughPercent / 100);
         const salt = this.state.flour * (this.state.saltPercent / 100);
+
         this.setState({
             water: water,
             sourdough: sourdough,
@@ -41,10 +46,18 @@ class InputField extends Component {
         });
     };
 
+    calculatePercentages() {
+        console.log('calculatePercentages');
+        const waterPercent = (this.state.water / this.state.flour) * 100;
+        this.setState({
+            waterPercent: waterPercent
+        });
+    };
+
     onInputChange(event) {
         console.log('onInputChange: ' + event.target.name + '=' + event.target.value);
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]: parseInt(event.target.value)
         });
     };
 
@@ -78,7 +91,7 @@ class InputField extends Component {
                                    checked={this.state.toGrams}
                             />
                             <label className="form-check-label" htmlFor="exampleRadios1">
-                                Räkna procent till gram
+                                Procent till gram
                             </label>
                         </div>
 
@@ -92,7 +105,7 @@ class InputField extends Component {
                                    checked={this.state.toPercentage}
                             />
                                 <label className="form-check-label" htmlFor="exampleRadios2">
-                                    Räkna gram till procent
+                                    Gram till procent
                                 </label>
                         </div>
                     </div>
