@@ -1,5 +1,5 @@
 # sourdough-calculator
-Counts your souroudgh percentages!
+React.js sourdough calculator
 
 - Install all dependencies
 <code>npm install</code>
