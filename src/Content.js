@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import ToGrams from './ToGrams';
+import ToPercentage from "./ToPercentage";
 
-class InputField extends Component {
+
+class Content extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,8 +19,7 @@ class InputField extends Component {
 
         };
 
-        // This binding is necessary to make `this` work in the callback
-        this.handleClick = this.handleClick.bind(this);        
+        this.handleClick = this.handleClick.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
         this.onRadioChange = this.onRadioChange.bind(this);
     }
@@ -78,148 +80,53 @@ class InputField extends Component {
 
     render() {
         return (
-            <form>
+            <div>
                 <div className="row">
-                    <div className="col-sm">
-                        <div className="form-check">
-                            <input className="form-check-input"
-                                   type="radio"
-                                   name="toGrams"
-                                   id="exampleRadios1"
-                                   value="option1"
-                                   onChange={this.onRadioChange}
-                                   checked={this.state.toGrams}
-                            />
-                            <label className="form-check-label" htmlFor="exampleRadios1">
-                                Procent till gram
-                            </label>
-                        </div>
-
-                        <div className="form-check">
-                            <input className="form-check-input"
-                                   type="radio"
-                                   name="toPercentage"
-                                   id="exampleRadios2"
-                                   value="option2"
-                                   onChange={this.onRadioChange}
-                                   checked={this.state.toPercentage}
-                            />
-                                <label className="form-check-label" htmlFor="exampleRadios2">
-                                    Gram till procent
-                                </label>
-                        </div>
+                    <div className="col-sm mb-3">
+                        <form>
+                            {this.renderRadioButtons()}
+                        </form>
                     </div>
                 </div>
 
-                <div className="row">
-                    <div className="col-sm">
-                        <div className="form-group">
-                            <label htmlFor="flourInput">Mjöl gram</label>
-                            <input type="text"
-                                   value={this.state.flour}
-                                   onChange={this.onInputChange}
-                                   className="form-control form-control-lg"
-                                   name="flour"
-                                   id="flourInput"
-                            />
-                        </div>
-                    </div>
-                    <div className="col-sm">
-
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-sm">
-                        <div className="form-group">
-                            <label htmlFor="waterInput">Vatten gram</label>
-                            <input type="text"
-                                   value={this.state.water}
-                                   onChange={this.onInputChange}
-                                   className="form-control form-control-lg"
-                                   name="water"
-                                   id="waterInput"
-                                   disabled={this.state.toGrams}
-                            />
-                        </div>
-                    </div>
-                    <div className="col-sm">
-                        <div className="form-group">
-                            <label htmlFor="waterPercentInput">Vatten %</label>
-                            <input type="text"
-                                   value={this.state.waterPercent}
-                                   onChange={this.onInputChange}
-                                   className="form-control form-control-lg"
-                                   name="waterPercent"
-                                   id="waterPercentInput"
-                                   disabled={this.state.toPercentage}
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-sm">
-                        <div className="form-group">
-                            <label htmlFor="sourdoughInput">Surdeg gram</label>
-                            <input type="text"
-                                   value={this.state.sourdough}
-                                   onChange={this.onInputChange}
-                                   className="form-control form-control-lg"
-                                   name="sourdough"
-                                   id="sourdoughInput"
-                                   disabled={this.state.toGrams}
-                            />
-                        </div>
-                    </div>
-                    <div className="col-sm">
-                        <div className="form-group">
-                            <label htmlFor="sourdoughPercentInput">Surdeg %</label>
-                            <input type="text"
-                                   value={this.state.sourdoughPercent}
-                                   onChange={this.onInputChange}
-                                   className="form-control form-control-lg"
-                                   name="sourdoughPercent"
-                                   id="sourdoughPercentInput"
-                                   disabled={this.state.toPercentage}
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-sm">
-                        <div className="form-group">
-                            <label htmlFor="saltInput">Salt gram</label>
-                            <input type="text"
-                                   value={this.state.salt}
-                                   onChange={this.onInputChange}
-                                   className="form-control form-control-lg"
-                                   name="salt"
-                                   id="saltInput"
-                                   disabled={this.state.toGrams}
-                            />
-                        </div>
-                    </div>
-                    <div className="col-sm">
-                        <div className="form-group">
-                                <label htmlFor="saltPercentInput">Salt %</label>
-                                <input type="text"
-                                       value={this.state.saltPercent}
-                                       onChange={this.onInputChange}
-                                       className="form-control form-control-lg"
-                                       name="saltPercent"
-                                       id="saltPercentInput"
-                                   disabled={this.state.toPercentage}
-                                />
-                            </div>
-                    </div>
-                </div>
-
-                <button type="button" onClick={this.handleClick} className="btn btn-primary">Räkna!</button>
-            </form>
+                { this.state.toGrams ? <ToGrams/> : <ToPercentage/> }
+            </div>
         );
-    }
+    };
+
+    renderRadioButtons() {
+        return (
+            <div>
+                <div className="form-check">
+                    <input className="form-check-input"
+                           type="radio"
+                           name="toGrams"
+                           id="exampleRadios1"
+                           value="option1"
+                           onChange={this.onRadioChange}
+                           checked={this.state.toGrams}
+                    />
+                    <label className="form-check-label" htmlFor="exampleRadios1">
+                        Procent till gram
+                    </label>
+                </div>
+
+                <div className="form-check">
+                    <input className="form-check-input"
+                           type="radio"
+                           name="toPercentage"
+                           id="exampleRadios2"
+                           value="option2"
+                           onChange={this.onRadioChange}
+                           checked={this.state.toPercentage}
+                    />
+                    <label className="form-check-label" htmlFor="exampleRadios2">
+                        Gram till procent
+                    </label>
+                </div>
+            </div>
+        );
+    };
 }
 
-export default InputField;
+export default Content;

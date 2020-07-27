@@ -7,7 +7,7 @@ export default class extends React.Component {
         return (
             <div className="row">
                 <div className="col-sm">
-                    <h1>Footer!</h1>
+
                 </div>
             </div>
         );
