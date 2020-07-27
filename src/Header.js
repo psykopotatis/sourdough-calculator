@@ -8,7 +8,10 @@ export default class extends React.Component {
             <div>
                 <div className="row">
                     <div className="col-sm">
-                        <h1>Baka surdeg!</h1>
+                        <h1>Baka surdeg</h1>
+                        <div className="alert alert-success" role="alert">
+                            <strong>Hey!</strong> Här kan du beräkna hydreringen på ditt surdegsbröd med hjälp av <i>baker's percentage</i> eller bagarens procent på svenska.
+                        </div>
                     </div>
                 </div>
             </div>
