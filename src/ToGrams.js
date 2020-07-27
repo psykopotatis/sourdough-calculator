@@ -47,12 +47,11 @@ class ToGrams extends Component {
     render() {
         return (
             <div>
-                <h2>Till gram</h2>
                 <form>
                     <div className="row">
                         <div className="col-sm mb-2">
                             <div className="form-group">
-                                <label htmlFor="flourInput">Mjöl gram</label>
+                                <label htmlFor="flourInput">Mjöl (gram)</label>
                                 <input type="text"
                                        value={this.state.flour}
                                        onChange={this.onInputChange}
@@ -60,6 +59,7 @@ class ToGrams extends Component {
                                        name="flour"
                                        id="flourInput"
                                 />
+                                <small id="flourHelp" className="form-text text-muted">Man utgår alltid från mjölet! Det är 100% och alla andra beräknas utifrån det.</small>
                             </div>
                         </div>
                         <div className="col-sm">
@@ -70,7 +70,7 @@ class ToGrams extends Component {
                     <div className="row">
                         <div className="col-sm">
                             <div className="form-group">
-                                <label htmlFor="waterPercentInput">Vatten %</label>
+                                <label htmlFor="waterPercentInput">Vatten (%)</label>
                                 <input type="text"
                                        value={this.state.waterPercent}
                                        onChange={this.onInputChange}
@@ -88,7 +88,7 @@ class ToGrams extends Component {
                     <div className="row">
                         <div className="col-sm">
                             <div className="form-group">
-                                <label htmlFor="sourdoughPercentInput">Surdeg %</label>
+                                <label htmlFor="sourdoughPercentInput">Surdeg (%)</label>
                                 <input type="text"
                                        value={this.state.sourdoughPercent}
                                        onChange={this.onInputChange}
@@ -106,7 +106,7 @@ class ToGrams extends Component {
                     <div className="row">
                         <div className="col-sm">
                             <div className="form-group">
-                                <label htmlFor="saltPercentInput">Salt %</label>
+                                <label htmlFor="saltPercentInput">Salt (%)</label>
                                 <input type="text"
                                        value={this.state.saltPercent}
                                        onChange={this.onInputChange}
@@ -121,8 +121,7 @@ class ToGrams extends Component {
                         </div>
                     </div>
 
-                    <button type="button" onClick={this.handleClick} className="btn btn-primary">Räkna till gram
-                    </button>
+                    <button type="button" onClick={this.handleClick} className="btn btn-primary">Räkna</button>
                 </form>
             </div>
         );
@@ -131,7 +130,7 @@ class ToGrams extends Component {
     renderWaterInput() {
         return (
             <div className="form-group">
-                <label htmlFor="waterInput">Vatten gram</label>
+                <label htmlFor="waterInput">Vatten (gram)</label>
                 <input type="text"
                        value={this.state.water}
                        onChange={this.onInputChange}
@@ -148,7 +147,7 @@ class ToGrams extends Component {
     renderSourdoughInput() {
         return (
             <div className="form-group">
-                <label htmlFor="sourdoughInput">Surdeg gram</label>
+                <label htmlFor="sourdoughInput">Surdeg (gram)</label>
                 <input type="text"
                        value={this.state.sourdough}
                        onChange={this.onInputChange}
@@ -164,7 +163,7 @@ class ToGrams extends Component {
     renderSaltInput() {
         return (
             <div className="form-group">
-                <label htmlFor="saltInput">Salt gram</label>
+                <label htmlFor="saltInput">Salt (gram)</label>
                 <input type="text"
                        value={this.state.salt}
                        onChange={this.onInputChange}

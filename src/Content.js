@@ -82,7 +82,7 @@ class Content extends Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col-sm mb-3">
+                    <div className="col-sm mb-5">
                         <form>
                             {this.renderRadioButtons()}
                         </form>
