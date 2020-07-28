@@ -59,8 +59,7 @@ class ToGrams extends Component {
                                        name="flour"
                                        id="flourInput"
                                 />
-                                <small id="flourHelp" className="form-text text-muted">Man utgår alltid från mjölet! Det
-                                    är 100% och alla andra beräknas utifrån det.</small>
+                                <small id="flourHelp" className="form-text text-muted">Man utgår från mjölet. Det är 100% och andra ingredienser beräknas utifrån det.</small>
                             </div>
                         </div>
                         <div className="col-sm">
