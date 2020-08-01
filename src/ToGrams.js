@@ -47,82 +47,87 @@ class ToGrams extends Component {
     render() {
         return (
             <div>
-                <form>
-                    <div className="row">
-                        <div className="col-sm mb-2">
-                            <div className="form-group">
-                                <label htmlFor="flourInput">Mjöl (gram)</label>
-                                <input type="text"
-                                       value={this.state.flour}
-                                       onChange={this.onInputChange}
-                                       className="form-control form-control-lg"
-                                       name="flour"
-                                       id="flourInput"
-                                />
-                                <small id="flourHelp" className="form-text text-muted">Man utgår från mjölet. Det är 100% och andra ingredienser beräknas utifrån det.</small>
+                <div className="mb-5">
+                    <form>
+                        <div className="row">
+                            <div className="col-sm mb-2">
+                                <div className="form-group">
+                                    <label htmlFor="flourInput">Mjöl (gram)</label>
+                                    <input type="text"
+                                           value={this.state.flour}
+                                           onChange={this.onInputChange}
+                                           className="form-control form-control-lg"
+                                           name="flour"
+                                           id="flourInput"
+                                    />
+                                    <small id="flourHelp" className="form-text text-muted">Man utgår från mjölet. Det är
+                                        100% och andra ingredienser beräknas utifrån det.</small>
+                                </div>
+                            </div>
+                            <div className="col-sm">
+
                             </div>
                         </div>
-                        <div className="col-sm">
 
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-sm">
-                            <div className="form-group">
-                                <label htmlFor="waterPercentInput">Vatten (%)</label>
-                                <input type="text"
-                                       value={this.state.waterPercent}
-                                       onChange={this.onInputChange}
-                                       className="form-control form-control-lg"
-                                       name="waterPercent"
-                                       id="waterPercentInput"
-                                />
+                        <div className="row">
+                            <div className="col-sm">
+                                <div className="form-group">
+                                    <label htmlFor="waterPercentInput">Vatten (%)</label>
+                                    <input type="text"
+                                           value={this.state.waterPercent}
+                                           onChange={this.onInputChange}
+                                           className="form-control form-control-lg"
+                                           name="waterPercent"
+                                           id="waterPercentInput"
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-sm">
+                                {this.state.showOutput ? this.renderWaterInput() : null}
                             </div>
                         </div>
-                        <div className="col-sm">
-                            {this.state.showOutput ? this.renderWaterInput() : null}
-                        </div>
-                    </div>
 
-                    <div className="row">
-                        <div className="col-sm">
-                            <div className="form-group">
-                                <label htmlFor="sourdoughPercentInput">Surdeg (%)</label>
-                                <input type="text"
-                                       value={this.state.sourdoughPercent}
-                                       onChange={this.onInputChange}
-                                       className="form-control form-control-lg"
-                                       name="sourdoughPercent"
-                                       id="sourdoughPercentInput"
-                                />
+                        <div className="row">
+                            <div className="col-sm">
+                                <div className="form-group">
+                                    <label htmlFor="sourdoughPercentInput">Surdeg (%)</label>
+                                    <input type="text"
+                                           value={this.state.sourdoughPercent}
+                                           onChange={this.onInputChange}
+                                           className="form-control form-control-lg"
+                                           name="sourdoughPercent"
+                                           id="sourdoughPercentInput"
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-sm">
+                                {this.state.showOutput ? this.renderSourdoughInput() : null}
                             </div>
                         </div>
-                        <div className="col-sm">
-                            {this.state.showOutput ? this.renderSourdoughInput() : null}
-                        </div>
-                    </div>
 
-                    <div className="row">
-                        <div className="col-sm">
-                            <div className="form-group">
-                                <label htmlFor="saltPercentInput">Salt (%)</label>
-                                <input type="text"
-                                       value={this.state.saltPercent}
-                                       onChange={this.onInputChange}
-                                       className="form-control form-control-lg"
-                                       name="saltPercent"
-                                       id="saltPercentInput"
-                                />
+                        <div className="row">
+                            <div className="col-sm">
+                                <div className="form-group">
+                                    <label htmlFor="saltPercentInput">Salt (%)</label>
+                                    <input type="text"
+                                           value={this.state.saltPercent}
+                                           onChange={this.onInputChange}
+                                           className="form-control form-control-lg"
+                                           name="saltPercent"
+                                           id="saltPercentInput"
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-sm">
+                                {this.state.showOutput ? this.renderSaltInput() : null}
                             </div>
                         </div>
-                        <div className="col-sm">
-                            {this.state.showOutput ? this.renderSaltInput() : null}
-                        </div>
-                    </div>
 
-                    <button type="button" onClick={this.handleClick} className="btn btn-primary">Räkna</button>
-                </form>
+                        <button type="button" onClick={this.handleClick} className="btn btn-primary">Räkna</button>
+                    </form>
+                </div>
+
+                {this.state.showOutput ? this.renderSaveButton() : null}
             </div>
         );
     }
@@ -174,6 +179,32 @@ class ToGrams extends Component {
                 />
             </div>
         );
+    }
+
+    renderSaveButton() {
+        return (
+            <div className="row border p-2">
+                <div className="col-sm mb-2">
+                    <p>Spara ditt recept?</p>
+                    <div className="form-group">
+                        <label htmlFor="nameInput">Ange ett namn:</label>
+                        <input type="text"
+                               value={this.state.name}
+                               onChange={this.onNameInputChange}
+                               className="form-control form-control-lg"
+                               name="name"
+                               id="nameInput"
+                        />
+                    </div>
+                    <button type="button" onClick={this.handleSave()} className="btn btn-primary">Spara</button>
+                </div>
+            </div>
+        );
+
+    }
+
+    handleSave(event) {
+        return undefined;
     }
 }
 
