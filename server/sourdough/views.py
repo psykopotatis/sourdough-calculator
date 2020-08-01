@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 # Create your views here.
 
 
 def index(request):
-    return HttpResponse("index")
+    template = loader.get_template('sourdough/index.html')
+    context = {
+        'latest_question_list': 'apa',
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def detail(request, question_id):
