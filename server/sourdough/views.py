@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -24,3 +25,31 @@ def results(request, question_id):
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
 
+@csrf_exempt
+def save(request):
+    if request.method == "POST":
+    	name = request.POST['name']
+    	flour = request.POST['flour']
+    	water = request.POST['water']
+    	sourdough = request.POST['sourdough']
+    	salt = request.POST['salt']
+    	# todo. parse int/float
+
+    	print(name)
+    	print(flour)
+    	print(request.POST)
+
+    	# create recipe
+
+    	# slugify name as url
+
+    	# save to db
+
+    	# return url
+
+    	# client: redirect to url
+
+    else:
+    	print('get not accepted')
+
+    return HttpResponse("Save");

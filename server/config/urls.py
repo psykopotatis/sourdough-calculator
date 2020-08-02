@@ -21,6 +21,10 @@ from sourdough import views
 urlpatterns = [
     # ex: /polls/
     path('', views.index, name='index'),
+
+    # ex: /save
+    path('save', views.save, name='save'),
+
     # ex: /polls/5/
     path('<int:question_id>/', views.detail, name='detail'),
     # ex: /polls/5/results/
