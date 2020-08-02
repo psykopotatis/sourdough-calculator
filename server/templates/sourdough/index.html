@@ -83,110 +83,129 @@
 
     <div class="album py-5 bg-light">
         <div class="container">
-            <form>
-                {% csrf_token %}
-
-                <div class="row">
-                    <div class="col-sm mb-2">
-                        <div class="form-group">
-                            <label for="flourInput">Mjöl (gram)</label>
-                            <input type="text"
-                                   value="1000"
-                                   class="form-control form-control-lg"
-                                   name="flour"
-                                   id="flourInput"
-                            />
-                            <small id="flourHelp" class="form-text text-muted">Man utgår från mjölet. Det är
-                                100% och andra ingredienser beräknas utifrån det.</small>
-                        </div>
-                    </div>
-                    <div class="col-sm">
-
+            <div class="row">
+                <div class="col-sm mb-2">
+                    <div class="form-group">
+                        <label for="flourInput">Mjöl (gram)</label>
+                        <input type="text"
+                               value="1000"
+                               class="form-control form-control-lg"
+                               name="flour"
+                               id="flourInput"
+                        />
+                        <small id="flourHelp" class="form-text text-muted">Man utgår från mjölet. Det är
+                            100% och andra ingredienser beräknas utifrån det.</small>
                     </div>
                 </div>
+                <div class="col-sm">
 
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="form-group">
-                            <label for="waterPercentInput">Vatten (%)</label>
-                            <input type="text"
-                                   value="75"
-                                   class="form-control form-control-lg"
-                                   name="waterPercent"
-                                   id="waterPercentInput"
-                            />
-                        </div>
-                    </div>
-                    <div class="col-sm">
+                </div>
+            </div>
 
-                        <div class="form-group hidden">
-                            <label for="waterInput">Vatten (gram)</label>
-                            <input type="text"
-                                   value="0"
-                                   class="form-control form-control-lg"
-                                   name="water"
-                                   id="waterInput"
-                                   disabled
-                            />
-                        </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="waterPercentInput">Vatten (%)</label>
+                        <input type="text"
+                               value="75"
+                               class="form-control form-control-lg"
+                               name="waterPercent"
+                               id="waterPercentInput"
+                        />
                     </div>
                 </div>
+                <div class="col-sm">
 
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="form-group">
-                            <label for="sourdoughPercentInput">Surdeg (%)</label>
-                            <input type="text"
-                                   value="15"
-                                   class="form-control form-control-lg"
-                                   name="sourdoughPercent"
-                                   id="sourdoughPercentInput"
-                            />
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div class="form-group hidden">
-                            <label for="sourdoughInput">Surdeg (gram)</label>
-                            <input type="text"
-                                   value="0"
-                                   class="form-control form-control-lg"
-                                   name="sourdough"
-                                   id="sourdoughInput"
-                                   disabled
-                            />
-                        </div>
-
+                    <div class="form-group hidden">
+                        <label for="waterInput">Vatten (gram)</label>
+                        <input type="text"
+                               value="0"
+                               class="form-control form-control-lg"
+                               name="water"
+                               id="waterInput"
+                               disabled
+                        />
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="form-group">
-                            <label for="saltPercentInput">Salt (%)</label>
-                            <input type="text"
-                                   value="2"
-                                   class="form-control form-control-lg"
-                                   name="saltPercent"
-                                   id="saltPercentInput"
-                            />
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div class="form-group hidden">
-                            <label for="saltInput">Salt (gram)</label>
-                            <input type="text"
-                                   value="0"
-                                   class="form-control form-control-lg"
-                                   name="salt"
-                                   id="saltInput"
-                                   disabled
-                            />
-                        </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="sourdoughPercentInput">Surdeg (%)</label>
+                        <input type="text"
+                               value="15"
+                               class="form-control form-control-lg"
+                               name="sourdoughPercent"
+                               id="sourdoughPercentInput"
+                        />
                     </div>
                 </div>
+                <div class="col-sm">
+                    <div class="form-group hidden">
+                        <label for="sourdoughInput">Surdeg (gram)</label>
+                        <input type="text"
+                               value="0"
+                               class="form-control form-control-lg"
+                               name="sourdough"
+                               id="sourdoughInput"
+                               disabled
+                        />
+                    </div>
 
-                <button type="button" onclick="handleClick()" class="btn btn-primary">Räkna</button>
-            </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="saltPercentInput">Salt (%)</label>
+                        <input type="text"
+                               value="2"
+                               class="form-control form-control-lg"
+                               name="saltPercent"
+                               id="saltPercentInput"
+                        />
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group hidden">
+                        <label for="saltInput">Salt (gram)</label>
+                        <input type="text"
+                               value="0"
+                               class="form-control form-control-lg"
+                               name="salt"
+                               id="saltInput"
+                               disabled
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" onclick="handleClick()" class="btn btn-primary">Räkna</button>
+
+            <div class="row mt-5 hidden">
+                <div class="col-sm">
+                    <div class="alert alert-primary" role="alert">
+                        <strong>Ok!</strong> Vill du spara ditt recept?
+                    </div>
+                    <form action="/save" action="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="nameInput">Ange ett namn:</label>
+                            <input type="text"
+                                   value=""
+                                   class="form-control form-control-lg"
+                                   name="name"
+                                   id="nameInput"
+                            />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Spara</button>
+                    </form>
+                </div>
+                <div class="col-sm">
+                </div>
+            </div>
         </div>
     </div>
 
