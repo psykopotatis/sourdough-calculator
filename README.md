@@ -1,9 +1,17 @@
 # sourdough-calculator
-React.js sourdough calculator
+Django sourdough calculator
 
-- Install all dependencies
-<code>npm install</code>
+<code>
+# create virtual env
+python3 -m venv venv
 
-- Run dev server
-<code>npm run dev</code>
+# activate
+source venv/bin/activate
+
+# install dependencies
+pip install -r requirements.txt
+
+# start server at http://127.0.0.1:8000
+python3 manage.py runserver
+</code>
 
