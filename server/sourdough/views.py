@@ -39,6 +39,10 @@ def save(request):
     	print(flour)
     	print(request.POST)
 
+    	# recipe model
+
+    	# migrate
+
     	# create recipe
 
     	# slugify name as url
