@@ -1,7 +1,7 @@
 # sourdough-calculator
 Django sourdough calculator
 
-<code>
+```
 # create virtual env
 python3 -m venv venv
 
@@ -13,5 +13,6 @@ pip install -r requirements.txt
 
 # start server at http://127.0.0.1:8000
 python3 manage.py runserver
-</code>
+```
+
 
