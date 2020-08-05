@@ -25,6 +25,8 @@ urlpatterns = [
     # ex: /save
     path('save', views.save, name='save'),
 
+    path('planera', views.planning, name='planning'),
+
     # ex: /polls/5/
     path('<int:question_id>/', views.detail, name='detail'),
     # ex: /polls/5/results/

@@ -12,6 +12,12 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+def planning(request):
+    template = loader.get_template('sourdough/planning.html')
+    context = {
+        'latest_question_list': 'apa',
+    }
+    return HttpResponse(template.render(context, request))
 
 def detail(request, question_id):
     return HttpResponse("You're looking at question %s." % question_id)
