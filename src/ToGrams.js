@@ -4,7 +4,6 @@ class ToGrams extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showOutput: false,
             flour: 1000,
             water: 0,
             waterPercent: 80,
@@ -30,7 +29,6 @@ class ToGrams extends Component {
         const salt = this.state.flour * (this.state.saltPercent / 100);
 
         this.setState({
-            showOutput: true,
             water: water,
             sourdough: sourdough,
             salt: salt,
@@ -126,8 +124,6 @@ class ToGrams extends Component {
                         <button type="button" onClick={this.handleClick} className="btn btn-primary">Räkna</button>
                     </form>
                 </div>
-
-                {this.state.showOutput ? this.renderSaveButton() : null}
             </div>
         );
     }
@@ -176,31 +172,6 @@ class ToGrams extends Component {
                 />
             </div>
         );
-    }
-
-    renderSaveButton() {
-        return (
-            <div className="row border p-2">
-                <div className="col-sm mb-2">
-                    <p>Spara ditt recept?</p>
-                    <div className="form-group">
-                        <label htmlFor="nameInput">Ange ett namn:</label>
-                        <input type="text"
-                               value={this.state.name}
-                               onChange={this.onNameInputChange}
-                               className="form-control form-control-lg"
-                               name="name"
-                               id="nameInput"
-                        />
-                    </div>
-                    <button type="button" onClick={this.handleSave()} className="btn btn-primary">Spara</button>
-                </div>
-            </div>
-        );
-    }
-
-    handleSave(event) {
-        return undefined;
     }
 }
 
