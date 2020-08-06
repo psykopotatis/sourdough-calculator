@@ -1,18 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Header from './Header';
-import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Content from "./Content";
+import Calculator from "./Calculator";
 
 function App() {
     return (
         <div>
             <div className="container">
-                <Header/>
-                <Content/>
-                <Footer/>
-            </div>        
+                <Calculator/>
+            </div>
         </div>
     );
 }

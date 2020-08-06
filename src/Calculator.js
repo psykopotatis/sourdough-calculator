@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class ToGrams extends Component {
+class Calculator extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -175,4 +175,4 @@ class ToGrams extends Component {
     }
 }
 
-export default ToGrams;
+export default Calculator;

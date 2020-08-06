@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ToGrams from './ToGrams';
+import Calculator from './Calculator';
 
 
 class Content extends Component {
@@ -24,7 +24,7 @@ class Content extends Component {
     render() {
         return (
             <div>
-                <ToGrams/>
+                <Calculator/>
             </div>
         );
     };
