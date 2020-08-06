@@ -83,7 +83,7 @@ class ToGrams extends Component {
                                 </div>
                             </div>
                             <div className="col-sm">
-                                {this.state.showOutput ? this.renderWaterInput() : null}
+                                {this.renderWaterInput()}
                             </div>
                         </div>
 
@@ -101,7 +101,7 @@ class ToGrams extends Component {
                                 </div>
                             </div>
                             <div className="col-sm">
-                                {this.state.showOutput ? this.renderSourdoughInput() : null}
+                                {this.renderSourdoughInput()}
                             </div>
                         </div>
 
@@ -119,7 +119,7 @@ class ToGrams extends Component {
                                 </div>
                             </div>
                             <div className="col-sm">
-                                {this.state.showOutput ? this.renderSaltInput() : null}
+                                {this.renderSaltInput()}
                             </div>
                         </div>
 
@@ -142,7 +142,6 @@ class ToGrams extends Component {
                        className="form-control form-control-lg"
                        name="water"
                        id="waterInput"
-                       disabled
                 />
             </div>
         );
@@ -159,7 +158,6 @@ class ToGrams extends Component {
                        className="form-control form-control-lg"
                        name="sourdough"
                        id="sourdoughInput"
-                       disabled
                 />
             </div>
         );
@@ -175,7 +173,6 @@ class ToGrams extends Component {
                        className="form-control form-control-lg"
                        name="salt"
                        id="saltInput"
-                       disabled
                 />
             </div>
         );
@@ -200,7 +197,6 @@ class ToGrams extends Component {
                 </div>
             </div>
         );
-
     }
 
     handleSave(event) {
