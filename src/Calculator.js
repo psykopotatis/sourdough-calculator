@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './Calculator.css'
 
 class Calculator extends Component {
     constructor(props) {
@@ -11,7 +12,6 @@ class Calculator extends Component {
             sourdoughPercent: 15,
             salt: 0,
             saltPercent: 2
-
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -59,8 +59,8 @@ class Calculator extends Component {
             <React.Fragment>
                 <div className="mb-5">
                     <form>
-                        <div className="row">
-                            <div className="col-sm mb-2">
+                        <div className="row input-row">
+                            <div className="col-sm first-col mb-2">
                                 <div className="form-group">
                                     <label htmlFor="flourInput">Mjöl (gram)</label>
                                     <input type="text"
@@ -81,8 +81,12 @@ class Calculator extends Component {
 
                         <div className="row">
                             <div className="col-sm">
-                                <div className="form-group">
-                                    <label htmlFor="waterPercentInput">Vatten (%)</label>
+                                <h5>Vatten</h5>
+                            </div>
+                        </div>
+                        <div className="row input-row ">
+                            <div className="col-sm first-col">
+                                <div className="input-group">
                                     <input type="text"
                                            value={this.state.waterPercent}
                                            onChange={this.onInputChange}
@@ -90,15 +94,30 @@ class Calculator extends Component {
                                            name="waterPercent"
                                            id="waterPercentInput"
                                     />
+                                    <div className="input-group-append">
+                                        <span className="input-group-text">%</span>
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-sm">
-                                {this.renderWaterInput()}
+                                <div className="input-group">
+                                    <input type="text"
+                                           value={this.state.water}
+                                           onChange={this.onInputChange}
+                                           className="form-control form-control-lg"
+                                           name="water"
+                                           id="waterInput"
+                                    />
+                                    <div className="input-group-append">
+                                        <span className="input-group-text">g</span>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
 
-                        <div className="row">
-                            <div className="col-sm">
+                        <div className="row input-row">
+                            <div className="col-sm first-col">
                                 <div className="form-group">
                                     <label htmlFor="sourdoughPercentInput">Surdeg (%)</label>
                                     <input type="text"
@@ -115,8 +134,8 @@ class Calculator extends Component {
                             </div>
                         </div>
 
-                        <div className="row">
-                            <div className="col-sm">
+                        <div className="row input-row">
+                            <div className="col-sm first-col">
                                 <div className="form-group">
                                     <label htmlFor="saltPercentInput">Salt (%)</label>
                                     <input type="text"
@@ -140,22 +159,6 @@ class Calculator extends Component {
         );
     }
 
-    renderWaterInput() {
-        return (
-            <div className="form-group">
-                <label htmlFor="waterInput">Vatten (gram)</label>
-                <input type="text"
-                       value={this.state.water}
-                       onChange={this.onInputChange}
-                       className="form-control form-control-lg"
-                       name="water"
-                       id="waterInput"
-                />
-            </div>
-        );
-    }
-
-
     renderSourdoughInput() {
         return (
             <div className="form-group">
@@ -166,6 +169,7 @@ class Calculator extends Component {
                        className="form-control form-control-lg"
                        name="sourdough"
                        id="sourdoughInput"
+                       disabled
                 />
             </div>
         );
@@ -181,6 +185,7 @@ class Calculator extends Component {
                        className="form-control form-control-lg"
                        name="salt"
                        id="saltInput"
+                       disabled
                 />
             </div>
         );

@@ -36,3 +36,7 @@ footer p {
 .hidden {
     display: none;
 }
+
+.col-sm {
+    width: 50%;
+}
