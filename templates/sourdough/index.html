@@ -1,49 +1,9 @@
 {% extends "sourdough/base.html" %}
 
-{% block scripts %}
-<script>
-    let recipe = {};
+{% load static %}
 
-    const getInt = (id) => {
-        return parseInt($(id).val());
-    };
-
-    const handleClick = () => {
-        const flour = getInt('#flourInput');
-        const waterPercent = getInt('#waterPercentInput');
-        const sourdoughPercent = getInt('#sourdoughPercentInput');
-        const saltPercent = getInt('#saltPercentInput');
-
-        const water = flour * (waterPercent / 100);
-        const sourdough = flour * (sourdoughPercent / 100);
-        const salt = flour * (saltPercent / 100);
-        recipe = {
-            name: 'test 123',
-            flour: flour,
-            water: water,
-            sourdough: sourdough,
-            salt: salt
-        };
-
-        $('#waterInput').val(water);
-        $('#sourdoughInput').val(sourdough);
-        $('#saltInput').val(salt);
-
-        // $('.hidden').show('slow');
-    };
-
-    const handleSave = () => {
-        const name = $('#nameInput').val();
-        console.log(name);
-        console.log(recipe);
-
-        $.post('/save', recipe, function (result) {
-            console.log('success');
-            console.log(result);
-
-        });
-    };
-</script>
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'sourdough/app.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -59,130 +19,13 @@
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-sm mb-2">
-                <div class="form-group">
-                    <label for="flourInput">Mjöl (gram)</label>
-                    <input type="text"
-                           value="1000"
-                           class="form-control form-control-lg"
-                           name="flour"
-                           id="flourInput"
-                    />
-                    <small id="flourHelp" class="form-text text-muted">Man utgår från mjölet. Det är
-                        100% och andra ingredienser beräknas utifrån det.</small>
-                </div>
-            </div>
-            <div class="col-sm">
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm">
-                <div class="form-group">
-                    <label for="waterPercentInput">Vatten (%)</label>
-                    <input type="text"
-                           value="75"
-                           class="form-control form-control-lg"
-                           name="waterPercent"
-                           id="waterPercentInput"
-                    />
-                </div>
-            </div>
-            <div class="col-sm">
-
-                <div class="form-group">
-                    <label for="waterInput">Vatten (gram)</label>
-                    <input type="text"
-                           value="750"
-                           class="form-control form-control-lg"
-                           name="water"
-                           id="waterInput"
-                           disabled
-                    />
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm">
-                <div class="form-group">
-                    <label for="sourdoughPercentInput">Surdeg (%)</label>
-                    <input type="text"
-                           value="15"
-                           class="form-control form-control-lg"
-                           name="sourdoughPercent"
-                           id="sourdoughPercentInput"
-                    />
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="form-group">
-                    <label for="sourdoughInput">Surdeg (gram)</label>
-                    <input type="text"
-                           value="150"
-                           class="form-control form-control-lg"
-                           name="sourdough"
-                           id="sourdoughInput"
-                           disabled
-                    />
-                </div>
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm">
-                <div class="form-group">
-                    <label for="saltPercentInput">Salt (%)</label>
-                    <input type="text"
-                           value="2"
-                           class="form-control form-control-lg"
-                           name="saltPercent"
-                           id="saltPercentInput"
-                    />
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="form-group">
-                    <label for="saltInput">Salt (gram)</label>
-                    <input type="text"
-                           value="20"
-                           class="form-control form-control-lg"
-                           name="salt"
-                           id="saltInput"
-                           disabled
-                    />
-                </div>
-            </div>
-        </div>
-
-        <button type="button" onclick="handleClick()" class="btn btn-primary">Räkna</button>
-
-        <div class="row mt-5 hidden">
-            <div class="col-sm">
-                <div class="alert alert-primary" role="alert">
-                    <strong>Ok!</strong> Vill du spara ditt recept?
-                </div>
-                <form>
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="nameInput">Ange ett namn:</label>
-                        <input type="text"
-                               value=""
-                               class="form-control form-control-lg"
-                               name="name"
-                               id="nameInput"
-                        />
-                    </div>
-                    <button type="button" onClick="handleSave()" class="btn btn-primary">Spara</button>
-                </form>
-            </div>
-            <div class="col-sm">
-            </div>
+            <div id="root"></div>
         </div>
     </div>
 </div>
 
 {% endblock %}
 
+{% block scripts %}
+<script src="{% static 'sourdough/app.js' %}"></script>
+{% endblock %}

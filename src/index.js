@@ -5,11 +5,7 @@ import Calculator from "./Calculator";
 
 function App() {
     return (
-        <div>
-            <div className="container">
-                <Calculator/>
-            </div>
-        </div>
+        <Calculator/>
     );
 }
 

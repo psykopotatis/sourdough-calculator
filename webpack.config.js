@@ -10,10 +10,11 @@ module.exports = {
         app: './src/index.js',
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'sourdough/static/sourdough'),
         // Save with the key from the entry section. Ie bundle.js, vendor.js
         // Chunkhash is a hash of the contents of the file.
-        filename: '[name].[hash].js'
+        // filename: '[name].[hash].js'
+        filename: '[name].js'
     },
     optimization: {
         splitChunks: {
@@ -84,7 +85,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({template: './src/index.html'}),
         new MiniCssExtractPlugin({
-            filename: '[name].[hash].css'
+            filename: '[name].css'
         })
     ]
 };

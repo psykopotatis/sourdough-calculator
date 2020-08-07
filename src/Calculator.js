@@ -35,7 +35,7 @@ class Calculator extends Component {
 
         this.setState({
             [event.target.name]: percent,
-             [key]: grams
+            [key]: grams
         });
     };
 
@@ -56,7 +56,7 @@ class Calculator extends Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <div className="mb-5">
                     <form>
                         <div className="row">
@@ -136,7 +136,7 @@ class Calculator extends Component {
                         <button type="button" onClick={this.handleClick} className="btn btn-primary">Räkna</button>
                     </form>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 
