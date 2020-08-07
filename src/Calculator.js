@@ -15,8 +15,8 @@ class Calculator extends Component {
         };
 
         this.handleClick = this.handleClick.bind(this);
-        this.onInputChange = this.onInputChange.bind(this);
         this.onFlourInputChange = this.onFlourInputChange.bind(this);
+        this.onInputChange = this.onInputChange.bind(this);
     }
 
     handleClick(e) {
@@ -70,8 +70,7 @@ class Calculator extends Component {
                                            name="flour"
                                            id="flourInput"
                                     />
-                                    <small id="flourHelp" className="form-text text-muted">Man utgår från mjölet. Det är
-                                        100% och andra ingredienser beräknas utifrån det.</small>
+                                    <small id="flourHelp" className="form-text text-muted">Alla ingredienser beräknas utifrån mjölet.</small>
                                 </div>
                             </div>
                             <div className="col-sm">
@@ -84,7 +83,8 @@ class Calculator extends Component {
                                 <h5>Vatten</h5>
                             </div>
                         </div>
-                        <div className="row input-row ">
+
+                        <div className="row input-row mb-4">
                             <div className="col-sm first-col">
                                 <div className="input-group">
                                     <input type="text"
@@ -111,15 +111,19 @@ class Calculator extends Component {
                                     <div className="input-group-append">
                                         <span className="input-group-text">g</span>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
 
-                        <div className="row input-row">
+                        <div className="row">
+                            <div className="col-sm">
+                                <h5>Surdeg</h5>
+                            </div>
+                        </div>
+
+                        <div className="row input-row  mb-4">
                             <div className="col-sm first-col">
-                                <div className="form-group">
-                                    <label htmlFor="sourdoughPercentInput">Surdeg (%)</label>
+                                <div className="input-group">
                                     <input type="text"
                                            value={this.state.sourdoughPercent}
                                            onChange={this.onInputChange}
@@ -127,17 +131,37 @@ class Calculator extends Component {
                                            name="sourdoughPercent"
                                            id="sourdoughPercentInput"
                                     />
+                                    <div className="input-group-append">
+                                        <span className="input-group-text">%</span>
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-sm">
-                                {this.renderSourdoughInput()}
+                                <div className="input-group">
+                                    <input type="text"
+                                           value={this.state.sourdough}
+                                           onChange={this.onInputChange}
+                                           className="form-control form-control-lg"
+                                           name="sourdough"
+                                           id="sourdoughInput"
+                                    />
+                                    <div className="input-group-append">
+                                        <span className="input-group-text">g</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="row input-row">
+
+                        <div className="row">
+                            <div className="col-sm">
+                                <h5>Salt</h5>
+                            </div>
+                        </div>
+
+                        <div className="row input-row mb-4">
                             <div className="col-sm first-col">
-                                <div className="form-group">
-                                    <label htmlFor="saltPercentInput">Salt (%)</label>
+                                <div className="input-group">
                                     <input type="text"
                                            value={this.state.saltPercent}
                                            onChange={this.onInputChange}
@@ -145,49 +169,29 @@ class Calculator extends Component {
                                            name="saltPercent"
                                            id="saltPercentInput"
                                     />
+                                    <div className="input-group-append">
+                                        <span className="input-group-text">%</span>
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-sm">
-                                {this.renderSaltInput()}
+                                <div className="input-group">
+                                    <input type="text"
+                                           value={this.state.salt}
+                                           onChange={this.onInputChange}
+                                           className="form-control form-control-lg"
+                                           name="salt"
+                                           id="saltInput"
+                                    />
+                                    <div className="input-group-append">
+                                        <span className="input-group-text">g</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <button type="button" onClick={this.handleClick} className="btn btn-primary">Räkna</button>
                     </form>
                 </div>
             </React.Fragment>
-        );
-    }
-
-    renderSourdoughInput() {
-        return (
-            <div className="form-group">
-                <label htmlFor="sourdoughInput">Surdeg (gram)</label>
-                <input type="text"
-                       value={this.state.sourdough}
-                       onChange={this.onInputChange}
-                       className="form-control form-control-lg"
-                       name="sourdough"
-                       id="sourdoughInput"
-                       disabled
-                />
-            </div>
-        );
-    }
-
-    renderSaltInput() {
-        return (
-            <div className="form-group">
-                <label htmlFor="saltInput">Salt (gram)</label>
-                <input type="text"
-                       value={this.state.salt}
-                       onChange={this.onInputChange}
-                       className="form-control form-control-lg"
-                       name="salt"
-                       id="saltInput"
-                       disabled
-                />
-            </div>
         );
     }
 }
