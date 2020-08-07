@@ -6,11 +6,11 @@ class Calculator extends Component {
         super(props);
         this.state = {
             flour: 1000,
-            water: 0,
+            water: 800,
             waterPercent: 80,
-            sourdough: 0,
+            sourdough: 150,
             sourdoughPercent: 15,
-            salt: 0,
+            salt: 20,
             saltPercent: 2
         };
 
@@ -54,6 +54,10 @@ class Calculator extends Component {
         });
     };
 
+    handleFocus(event) {
+        event.target.select();
+    };
+
     render() {
         return (
             <React.Fragment>
@@ -68,13 +72,17 @@ class Calculator extends Component {
                         <div className="row input-row">
                             <div className="col-sm first-col mb-2">
                                 <div className="form-group">
-                                    <input type="text"
-                                           value={this.state.flour}
-                                           onChange={this.onFlourInputChange}
-                                           className="form-control form-control-lg"
-                                           name="flour"
-                                           id="flourInput"
-                                    />
+                                    <div className="input-wrapper">
+                                        <input type="text"
+                                               value={this.state.flour}
+                                               onFocus={this.handleFocus}
+                                               onChange={this.onFlourInputChange}
+                                               className="form-control form-control-lg"
+                                               name="flour"
+                                               id="flourInput"
+                                        />
+                                        <p>g</p>
+                                    </div>
                                     <small id="flourHelp" className="form-text text-muted">Alla ingredienser beräknas
                                         utifrån mjölet.</small>
                                 </div>
@@ -95,6 +103,7 @@ class Calculator extends Component {
                                 <div className="input-group">
                                     <input type="text"
                                            value={this.state.waterPercent}
+                                           onFocus={this.handleFocus}
                                            onChange={this.onInputChange}
                                            className="form-control form-control-lg"
                                            name="waterPercent"
@@ -132,6 +141,7 @@ class Calculator extends Component {
                                 <div className="input-group">
                                     <input type="text"
                                            value={this.state.sourdoughPercent}
+                                           onFocus={this.handleFocus}
                                            onChange={this.onInputChange}
                                            className="form-control form-control-lg"
                                            name="sourdoughPercent"
@@ -170,6 +180,7 @@ class Calculator extends Component {
                                 <div className="input-group">
                                     <input type="text"
                                            value={this.state.saltPercent}
+                                           onFocus={this.handleFocus}
                                            onChange={this.onInputChange}
                                            className="form-control form-control-lg"
                                            name="saltPercent"
