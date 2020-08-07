@@ -101,30 +101,31 @@ class Calculator extends Component {
                         <div className="row input-row mb-4">
                             <div className="col-sm first-col">
                                 <div className="input-group">
-                                    <input type="text"
-                                           value={this.state.waterPercent}
-                                           onFocus={this.handleFocus}
-                                           onChange={this.onInputChange}
-                                           className="form-control form-control-lg"
-                                           name="waterPercent"
-                                           id="waterPercentInput"
-                                    />
-                                    <div className="input-group-append">
-                                        <span className="input-group-text">%</span>
+                                    <div className="input-wrapper">
+                                        <input type="text"
+                                               value={this.state.waterPercent}
+                                               onFocus={this.handleFocus}
+                                               onChange={this.onInputChange}
+                                               className="form-control form-control-lg"
+                                               name="waterPercent"
+                                               id="waterPercentInput"
+                                        />
+                                        <p>%</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-sm">
                                 <div className="input-group">
-                                    <input type="text"
-                                           value={this.state.water}
-                                           onChange={this.onInputChange}
-                                           className="form-control form-control-lg"
-                                           name="water"
-                                           id="waterInput"
-                                    />
-                                    <div className="input-group-append">
-                                        <span className="input-group-text">g</span>
+                                    <div className="input-wrapper">
+
+                                        <input type="text"
+                                               value={this.state.water}
+                                               onChange={this.onInputChange}
+                                               className="form-control form-control-lg"
+                                               name="water"
+                                               id="waterInput"
+                                        />
+                                        <p>g</p>
                                     </div>
                                 </div>
                             </div>
@@ -139,30 +140,30 @@ class Calculator extends Component {
                         <div className="row input-row  mb-4">
                             <div className="col-sm first-col">
                                 <div className="input-group">
-                                    <input type="text"
-                                           value={this.state.sourdoughPercent}
-                                           onFocus={this.handleFocus}
-                                           onChange={this.onInputChange}
-                                           className="form-control form-control-lg"
-                                           name="sourdoughPercent"
-                                           id="sourdoughPercentInput"
-                                    />
-                                    <div className="input-group-append">
-                                        <span className="input-group-text">%</span>
+                                    <div className="input-wrapper">
+                                        <input type="text"
+                                               value={this.state.sourdoughPercent}
+                                               onFocus={this.handleFocus}
+                                               onChange={this.onInputChange}
+                                               className="form-control form-control-lg"
+                                               name="sourdoughPercent"
+                                               id="sourdoughPercentInput"
+                                        />
+                                        <p>%</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-sm">
                                 <div className="input-group">
-                                    <input type="text"
-                                           value={this.state.sourdough}
-                                           onChange={this.onInputChange}
-                                           className="form-control form-control-lg"
-                                           name="sourdough"
-                                           id="sourdoughInput"
-                                    />
-                                    <div className="input-group-append">
-                                        <span className="input-group-text">g</span>
+                                    <div className="input-wrapper">
+                                        <input type="text"
+                                               value={this.state.sourdough}
+                                               onChange={this.onInputChange}
+                                               className="form-control form-control-lg"
+                                               name="sourdough"
+                                               id="sourdoughInput"
+                                        />
+                                        <p>g</p>
                                     </div>
                                 </div>
                             </div>
@@ -178,30 +179,30 @@ class Calculator extends Component {
                         <div className="row input-row mb-4">
                             <div className="col-sm first-col">
                                 <div className="input-group">
-                                    <input type="text"
-                                           value={this.state.saltPercent}
-                                           onFocus={this.handleFocus}
-                                           onChange={this.onInputChange}
-                                           className="form-control form-control-lg"
-                                           name="saltPercent"
-                                           id="saltPercentInput"
-                                    />
-                                    <div className="input-group-append">
-                                        <span className="input-group-text">%</span>
+                                    <div className="input-wrapper">
+                                        <input type="text"
+                                               value={this.state.saltPercent}
+                                               onFocus={this.handleFocus}
+                                               onChange={this.onInputChange}
+                                               className="form-control form-control-lg"
+                                               name="saltPercent"
+                                               id="saltPercentInput"
+                                        />
+                                        <p>%</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-sm">
                                 <div className="input-group">
-                                    <input type="text"
-                                           value={this.state.salt}
-                                           onChange={this.onInputChange}
-                                           className="form-control form-control-lg"
-                                           name="salt"
-                                           id="saltInput"
-                                    />
-                                    <div className="input-group-append">
-                                        <span className="input-group-text">g</span>
+                                    <div className="input-wrapper">
+                                        <input type="text"
+                                               value={this.state.salt}
+                                               onChange={this.onInputChange}
+                                               className="form-control form-control-lg"
+                                               name="salt"
+                                               id="saltInput"
+                                        />
+                                        <p>g</p>
                                     </div>
                                 </div>
                             </div>

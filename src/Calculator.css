@@ -36,13 +36,13 @@
     min-width: 25%;
     background: none;
     color: inherit;
-    font-size: inherit;
     font-family: inherit;
     font-weight: 500;
     text-align: right;
     -webkit-appearance: none;
     outline: none;
     border: none;
+    padding-right: 0.3em;
 }
 
 .input-wrapper input:focus {
