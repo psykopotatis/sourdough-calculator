@@ -16,6 +16,7 @@ class Calculator extends Component {
 
         this.handleClick = this.handleClick.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
+        this.onFlourInputChange = this.onFlourInputChange.bind(this);
     }
 
     handleClick(e) {
@@ -24,21 +25,32 @@ class Calculator extends Component {
     };
 
     calculateGrams() {
-        const water = this.state.flour * (this.state.waterPercent / 100);
-        const sourdough = this.state.flour * (this.state.sourdoughPercent / 100);
-        const salt = this.state.flour * (this.state.saltPercent / 100);
 
-        this.setState({
-            water: water,
-            sourdough: sourdough,
-            salt: salt,
-        });
     };
 
     onInputChange(event) {
-        console.log('onInputChange: ' + event.target.name + '=' + event.target.value);
+        const percent = parseInt(event.target.value) || 0;
+        const grams = this.state.flour * (percent / 100);
+        const key = event.target.name.replace('Percent', '');
+
         this.setState({
-            [event.target.name]: parseInt(event.target.value)
+            [event.target.name]: percent,
+             [key]: grams
+        });
+    };
+
+    onFlourInputChange(event) {
+        const flour = parseInt(event.target.value) || 0;
+
+        const water = flour * (this.state.waterPercent / 100);
+        const sourdough = flour * (this.state.sourdoughPercent / 100);
+        const salt = flour * (this.state.saltPercent / 100);
+
+        this.setState({
+            flour: flour,
+            water: water,
+            sourdough: sourdough,
+            salt: salt,
         });
     };
 
@@ -53,7 +65,7 @@ class Calculator extends Component {
                                     <label htmlFor="flourInput">Mjöl (gram)</label>
                                     <input type="text"
                                            value={this.state.flour}
-                                           onChange={this.onInputChange}
+                                           onChange={this.onFlourInputChange}
                                            className="form-control form-control-lg"
                                            name="flour"
                                            id="flourInput"
