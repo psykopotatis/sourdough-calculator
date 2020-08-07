@@ -13,6 +13,7 @@
     padding-right: 10px;
 }
 
-h5 {
-
+.calculator-label {
+    font-weight: 600;
+    margin-bottom: 6px;
 }

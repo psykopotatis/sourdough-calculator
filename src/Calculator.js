@@ -59,10 +59,15 @@ class Calculator extends Component {
             <React.Fragment>
                 <div className="mb-5">
                     <form>
+                        <div className="row">
+                            <div className="col-sm">
+                                <label className="calculator-label" htmlFor="flourInput">Mjöl (gram)</label>
+                            </div>
+                        </div>
+
                         <div className="row input-row">
                             <div className="col-sm first-col mb-2">
                                 <div className="form-group">
-                                    <label htmlFor="flourInput">Mjöl (gram)</label>
                                     <input type="text"
                                            value={this.state.flour}
                                            onChange={this.onFlourInputChange}
@@ -70,7 +75,8 @@ class Calculator extends Component {
                                            name="flour"
                                            id="flourInput"
                                     />
-                                    <small id="flourHelp" className="form-text text-muted">Alla ingredienser beräknas utifrån mjölet.</small>
+                                    <small id="flourHelp" className="form-text text-muted">Alla ingredienser beräknas
+                                        utifrån mjölet.</small>
                                 </div>
                             </div>
                             <div className="col-sm">
@@ -80,7 +86,7 @@ class Calculator extends Component {
 
                         <div className="row">
                             <div className="col-sm">
-                                <h5>Vatten</h5>
+                                <label className="calculator-label" htmlFor="waterPercentInput">Vatten</label>
                             </div>
                         </div>
 
@@ -117,7 +123,7 @@ class Calculator extends Component {
 
                         <div className="row">
                             <div className="col-sm">
-                                <h5>Surdeg</h5>
+                                <label className="calculator-label" htmlFor="sourdoughPercentInput">Surdeg</label>
                             </div>
                         </div>
 
@@ -155,7 +161,7 @@ class Calculator extends Component {
 
                         <div className="row">
                             <div className="col-sm">
-                                <h5>Salt</h5>
+                                <label className="calculator-label" htmlFor="saltPercentInput">Salt</label>
                             </div>
                         </div>
 
