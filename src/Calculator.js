@@ -31,7 +31,7 @@ class Calculator extends Component {
 
     calculatePercentToWeight(event) {
         const percent = parseInt(event.target.value) || 0;
-        const grams = this.state.flour * (percent / 100);
+        let grams = this.round(this.state.flour * (percent / 100));
         const key = event.target.name.replace('Percent', '');
 
         this.setState({
@@ -42,7 +42,7 @@ class Calculator extends Component {
 
     calculateWeightToPercent(event) {
         const grams = parseInt(event.target.value) || 0;
-        const percent = (grams / this.state.flour) * 100;
+        let percent = this.round((grams / this.state.flour) * 100);
         const key = event.target.name + 'Percent';
 
         this.setState({
@@ -51,12 +51,24 @@ class Calculator extends Component {
         });
     };
 
+    round(n) {
+        if (this.isFloat(n)) {
+            return n.toFixed(1);
+        }
+
+        return n;
+    };
+
+    isFloat(n) {
+        return n % 1 !== 0;
+    };
+
     onFlourInputChange(event) {
         const flour = parseInt(event.target.value) || 0;
 
-        const water = flour * (this.state.waterPercent / 100);
-        const sourdough = flour * (this.state.sourdoughPercent / 100);
-        const salt = flour * (this.state.saltPercent / 100);
+        const water = this.round(flour * (this.state.waterPercent / 100));
+        const sourdough = this.round(flour * (this.state.sourdoughPercent / 100));
+        const salt = this.round(flour * (this.state.saltPercent / 100));
 
         this.setState({
             flour: flour,
