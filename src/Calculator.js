@@ -70,7 +70,7 @@ class Calculator extends Component {
                         </div>
 
                         <div className="row input-row">
-                            <div className="col-sm first-col mb-2">
+                            <div className="col-sm first-col">
                                 <div className="form-group">
                                     <div className="input-wrapper">
                                         <input type="text"
@@ -98,7 +98,7 @@ class Calculator extends Component {
                             </div>
                         </div>
 
-                        <div className="row input-row mb-4">
+                        <div className="row input-row mb-3">
                             <div className="col-sm first-col">
                                 <div className="input-group">
                                     <div className="input-wrapper">
@@ -137,7 +137,7 @@ class Calculator extends Component {
                             </div>
                         </div>
 
-                        <div className="row input-row  mb-4">
+                        <div className="row input-row mb-3">
                             <div className="col-sm first-col">
                                 <div className="input-group">
                                     <div className="input-wrapper">
@@ -169,14 +169,13 @@ class Calculator extends Component {
                             </div>
                         </div>
 
-
                         <div className="row">
                             <div className="col-sm">
                                 <label className="calculator-label" htmlFor="saltPercentInput">Salt</label>
                             </div>
                         </div>
 
-                        <div className="row input-row mb-4">
+                        <div className="row input-row mb-2">
                             <div className="col-sm first-col">
                                 <div className="input-group">
                                     <div className="input-wrapper">
