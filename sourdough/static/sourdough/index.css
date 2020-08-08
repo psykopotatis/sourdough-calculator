@@ -3,6 +3,14 @@
     padding-bottom: 3rem;
     margin-bottom: 0;
     background-color: #fff;
+    text-align: center;
+}
+
+
+
+img {
+    height: 50px;
+    width: 50px;
 }
 
 @media (min-width: 768px) {
@@ -17,7 +25,7 @@
 }
 
 .jumbotron h1 {
-    font-weight: 300;
+
 }
 
 .jumbotron .container {
