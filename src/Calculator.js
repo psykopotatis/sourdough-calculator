@@ -65,7 +65,7 @@ class Calculator extends Component {
                     <form>
                         <div className="row">
                             <div className="col-sm">
-                                <label className="calculator-label" htmlFor="flourInput">Mjöl (gram)</label>
+                                <label className="calculator-label" htmlFor="flourInput">Flour</label>
                             </div>
                         </div>
 
@@ -83,8 +83,7 @@ class Calculator extends Component {
                                         />
                                         <p>g</p>
                                     </div>
-                                    <small id="flourHelp" className="form-text text-muted">Alla ingredienser beräknas
-                                        utifrån mjölet.</small>
+                                    <small id="flourHelp" className="form-text text-muted">All ingredients are calculated from the flour.</small>
                                 </div>
                             </div>
                             <div className="col-sm">
@@ -94,7 +93,7 @@ class Calculator extends Component {
 
                         <div className="row">
                             <div className="col-sm">
-                                <label className="calculator-label" htmlFor="waterPercentInput">Vatten</label>
+                                <label className="calculator-label" htmlFor="waterPercentInput">Water</label>
                             </div>
                         </div>
 
@@ -133,7 +132,7 @@ class Calculator extends Component {
 
                         <div className="row">
                             <div className="col-sm">
-                                <label className="calculator-label" htmlFor="sourdoughPercentInput">Surdeg</label>
+                                <label className="calculator-label" htmlFor="sourdoughPercentInput">Sourdough</label>
                             </div>
                         </div>
 
