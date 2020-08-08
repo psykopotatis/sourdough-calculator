@@ -16,7 +16,8 @@ class Calculator extends Component {
 
         this.handleClick = this.handleClick.bind(this);
         this.onFlourInputChange = this.onFlourInputChange.bind(this);
-        this.onInputChange = this.onInputChange.bind(this);
+        this.calculatePercentToWeight = this.calculatePercentToWeight.bind(this);
+        this.calculateWeightToPercent = this.calculateWeightToPercent.bind(this);
     }
 
     handleClick(e) {
@@ -28,7 +29,7 @@ class Calculator extends Component {
 
     };
 
-    onInputChange(event) {
+    calculatePercentToWeight(event) {
         const percent = parseInt(event.target.value) || 0;
         const grams = this.state.flour * (percent / 100);
         const key = event.target.name.replace('Percent', '');
@@ -39,8 +40,15 @@ class Calculator extends Component {
         });
     };
 
-    onGramsInputChange(event) {
+    calculateWeightToPercent(event) {
+        const grams = parseInt(event.target.value) || 0;
+        const percent = (grams / this.state.flour) * 100;
+        const key = event.target.name + 'Percent';
 
+        this.setState({
+            [key]: percent,
+            [event.target.name]: grams
+        });
     };
 
     onFlourInputChange(event) {
@@ -108,7 +116,7 @@ class Calculator extends Component {
                                         <input type="text"
                                                value={this.state.waterPercent}
                                                onFocus={this.handleFocus}
-                                               onChange={this.onInputChange}
+                                               onChange={this.calculatePercentToWeight}
                                                className="form-control form-control-lg"
                                                name="waterPercent"
                                                id="waterPercentInput"
@@ -123,7 +131,7 @@ class Calculator extends Component {
                                         <input type="text"
                                                value={this.state.water}
                                                onFocus={this.handleFocus}
-                                               onChange={this.onInputChange}
+                                               onChange={this.calculateWeightToPercent}
                                                className="form-control form-control-lg"
                                                name="water"
                                                id="waterInput"
@@ -147,7 +155,7 @@ class Calculator extends Component {
                                         <input type="text"
                                                value={this.state.sourdoughPercent}
                                                onFocus={this.handleFocus}
-                                               onChange={this.onInputChange}
+                                               onChange={this.calculatePercentToWeight}
                                                className="form-control form-control-lg"
                                                name="sourdoughPercent"
                                                id="sourdoughPercentInput"
@@ -162,7 +170,7 @@ class Calculator extends Component {
                                         <input type="text"
                                                value={this.state.sourdough}
                                                onFocus={this.handleFocus}
-                                               onChange={this.onInputChange}
+                                               onChange={this.calculateWeightToPercent}
                                                className="form-control form-control-lg"
                                                name="sourdough"
                                                id="sourdoughInput"
@@ -186,7 +194,7 @@ class Calculator extends Component {
                                         <input type="text"
                                                value={this.state.saltPercent}
                                                onFocus={this.handleFocus}
-                                               onChange={this.onInputChange}
+                                               onChange={this.calculatePercentToWeight}
                                                className="form-control form-control-lg"
                                                name="saltPercent"
                                                id="saltPercentInput"
@@ -201,7 +209,7 @@ class Calculator extends Component {
                                         <input type="text"
                                                value={this.state.salt}
                                                onFocus={this.handleFocus}
-                                               onChange={this.onInputChange}
+                                               onChange={this.calculateWeightToPercent}
                                                className="form-control form-control-lg"
                                                name="salt"
                                                id="saltInput"
