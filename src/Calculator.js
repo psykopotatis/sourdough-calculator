@@ -39,6 +39,10 @@ class Calculator extends Component {
         });
     };
 
+    onGramsInputChange(event) {
+
+    };
+
     onFlourInputChange(event) {
         const flour = parseInt(event.target.value) || 0;
 
@@ -116,9 +120,9 @@ class Calculator extends Component {
                             <div className="col-sm">
                                 <div className="input-group">
                                     <div className="input-wrapper">
-
                                         <input type="text"
                                                value={this.state.water}
+                                               onFocus={this.handleFocus}
                                                onChange={this.onInputChange}
                                                className="form-control form-control-lg"
                                                name="water"
@@ -157,6 +161,7 @@ class Calculator extends Component {
                                     <div className="input-wrapper">
                                         <input type="text"
                                                value={this.state.sourdough}
+                                               onFocus={this.handleFocus}
                                                onChange={this.onInputChange}
                                                className="form-control form-control-lg"
                                                name="sourdough"
@@ -195,6 +200,7 @@ class Calculator extends Component {
                                     <div className="input-wrapper">
                                         <input type="text"
                                                value={this.state.salt}
+                                               onFocus={this.handleFocus}
                                                onChange={this.onInputChange}
                                                className="form-control form-control-lg"
                                                name="salt"
