@@ -19,14 +19,37 @@
     </div>
 </section>
 
-<div class="album py-5 calculator-light">
+<div class="py-5 calculator-light">
     <div class="container">
         <div id="root"></div>
+    </div>
+</div>
+
+<div class="save-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <p><strong>Awesome recipe? Save it!</strong></p>
+                <label for="nameInput">Name:</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="nameInput">
+                </div>
+                <button type="button" class="btn btn-primary saveButton">Save recipe</button>
+            </div>
+        </div>
     </div>
 </div>
 
 {% endblock %}
 
 {% block scripts %}
+<script>
+    $(function () {
+        console.log('ready');
+        $('.saveButton').click(function() {
+            console.log('click');
+        });
+    });
+</script>
 <script src="{% static 'sourdough/app.js' %}"></script>
 {% endblock %}

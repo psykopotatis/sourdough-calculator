@@ -45,3 +45,11 @@ footer p {
 .col-sm {
     width: 50%;
 }
+
+.save-section {
+
+}
+
+.save-section .col-sm {
+    width: 100%;
+}
