@@ -86,7 +86,7 @@ class Calculator extends Component {
         return (
             <React.Fragment>
                 <div className="mb-5">
-                    <form>
+                    <form id="calculatorForm">
                         <div className="row">
                             <div className="col-sm">
                                 <label className="calculator-label" htmlFor="flourInput">Flour</label>
