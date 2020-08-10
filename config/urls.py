@@ -25,6 +25,10 @@ urlpatterns = [
     # ex: /save
     path('save', views.save, name='save'),
 
+    # ex: /recipe/5/my-best-sourdough-recipe
+    path('recipe/<int:recipe_id>/<str:slug>', views.detail, name='detail'),
+
+
     path('planera', views.planning, name='planning'),
 
     # ex: /polls/5/
