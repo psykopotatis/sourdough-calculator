@@ -5,7 +5,15 @@
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'sourdough/app.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'sourdough/index.css' %}">
-
+<script>
+    const serverData = {
+        name: '{{recipe.name}}',
+        flour: '{{recipe.flour}}',
+        water: '{{recipe.water}}',
+        sourdough: '{{recipe.sourdough}}',
+        salt: '{{recipe.salt}}'
+    };
+</script>
 {% endblock %}
 
 {% block content %}
@@ -13,9 +21,6 @@
     <div class="container">
         <img src="https://img.icons8.com/bubbles/100/000000/kawaii-bread-1.png"/>
         <h1>{{ recipe.name }}</h1>
-        <p class="lead text-muted">
-            Calculate ingredients for your sourdough bread with baker's percentage.
-        </p>
     </div>
 </section>
 
@@ -29,13 +34,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <p><strong>Awesome recipe? Save it!</strong></p>
-                <label for="nameInput">Name:</label>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="nameInput">
-                </div>
-                <button type="button" class="btn btn-primary saveButton">Save recipe</button>
-            </div>
+
         </div>
     </div>
 </div>
