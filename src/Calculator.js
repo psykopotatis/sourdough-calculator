@@ -1,23 +1,47 @@
 import React, {Component} from 'react';
 import './Calculator.css'
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import map from 'lodash/map';
+
 
 class Calculator extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            flour: 1000,
-            water: 800,
-            waterPercent: 80,
-            sourdough: 150,
-            sourdoughPercent: 15,
-            salt: 20,
-            saltPercent: 2
+            ingredients: {
+                flour: {
+                    weight: 1000,
+                    percent: 100,
+                    selected: true
+                },
+                water: {
+                    weight: 800,
+                    percent: 80,
+                    selected: true
+                },
+                sourdough: {
+                    weight: 150,
+                    percent: 15,
+                    selected: true
+                },
+                salt: {
+                    weight: 20,
+                    percent: 2,
+                    selected: true
+                },
+
+            },
+            showModal: false
         };
 
         this.handleClick = this.handleClick.bind(this);
         this.onFlourInputChange = this.onFlourInputChange.bind(this);
         this.calculatePercentToWeight = this.calculatePercentToWeight.bind(this);
         this.calculateWeightToPercent = this.calculateWeightToPercent.bind(this);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.renderRow = this.renderRow.bind(this);
     }
 
     handleClick(e) {
@@ -31,18 +55,19 @@ class Calculator extends Component {
 
     calculatePercentToWeight(event) {
         const percent = parseInt(event.target.value) || 0;
-        let grams = this.round(this.state.flour * (percent / 100));
+        let weight = this.round(this.state.ingredients.flour.weight * (percent / 100));
         const key = event.target.name.replace('Percent', '');
 
-        this.setState({
-            [event.target.name]: percent,
-            [key]: grams
-        });
+        let ingredients = Object.assign({}, this.state.ingredients);
+        ingredients[key].weight = weight;
+        ingredients[key].percent = percent;
+
+        this.setState(ingredients);
     };
 
     calculateWeightToPercent(event) {
         const grams = parseInt(event.target.value) || 0;
-        let percent = this.round((grams / this.state.flour) * 100);
+        let percent = this.round((grams / this.state.ingredients.flour.weight) * 100);
         const key = event.target.name + 'Percent';
 
         this.setState({
@@ -82,157 +107,103 @@ class Calculator extends Component {
         event.target.select();
     };
 
+    handleShow() {
+        this.setState({
+            showModal: true
+        })
+    };
+
+    handleClose() {
+        this.setState({
+            showModal: false
+        })
+    };
+
+
+    renderRow(value, key) {
+        return (
+            <React.Fragment>
+                <div className="row">
+                    <div className="col-sm">
+                        <label className="calculator-label" htmlFor={key + "PercentInput"}>{key}</label>
+                    </div>
+                </div>
+
+                <div className="row input-row mb-3">
+                    <div className="col-sm first-col">
+                        <div className="input-group">
+                            <div className="input-wrapper">
+                                <input type="text"
+                                       value={value.percent}
+                                       onFocus={this.handleFocus}
+                                       onChange={this.calculatePercentToWeight}
+                                       className="form-control form-control-lg"
+                                       name={key + "Percent"}
+                                       id={key + "PercentInput"}
+                                />
+                                <p>%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-sm">
+                        <div className="input-group">
+                            <div className="input-wrapper">
+                                <input type="text"
+                                       value={value.weight}
+                                       onFocus={this.handleFocus}
+                                       onChange={this.calculateWeightToPercent}
+                                       className="form-control form-control-lg"
+                                       name={key}
+                                       id={key + "Input"}
+                                />
+                                <p>g</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </React.Fragment>
+        );
+    };
+
     render() {
         return (
             <React.Fragment>
                 <div className="mb-5">
                     <form id="calculatorForm">
-                        <div className="row">
-                            <div className="col-sm">
-                                <label className="calculator-label" htmlFor="flourInput">Flour</label>
-                            </div>
-                        </div>
 
-                        <div className="row input-row">
-                            <div className="col-sm first-col">
-                                <div className="form-group">
-                                    <div className="input-wrapper">
-                                        <input type="text"
-                                               value={this.state.flour}
-                                               onFocus={this.handleFocus}
-                                               onChange={this.onFlourInputChange}
-                                               className="form-control form-control-lg"
-                                               name="flour"
-                                               id="flourInput"
-                                        />
-                                        <p>g</p>
-                                    </div>
-                                    <small id="flourHelp" className="form-text text-muted">All ingredients are calculated from the flour.</small>
-                                </div>
-                            </div>
-                            <div className="col-sm">
 
-                            </div>
-                        </div>
+                        {map(this.state.ingredients, this.renderRow)}
 
-                        <div className="row">
-                            <div className="col-sm">
-                                <label className="calculator-label" htmlFor="waterPercentInput">Water</label>
-                            </div>
-                        </div>
-
-                        <div className="row input-row mb-3">
-                            <div className="col-sm first-col">
-                                <div className="input-group">
-                                    <div className="input-wrapper">
-                                        <input type="text"
-                                               value={this.state.waterPercent}
-                                               onFocus={this.handleFocus}
-                                               onChange={this.calculatePercentToWeight}
-                                               className="form-control form-control-lg"
-                                               name="waterPercent"
-                                               id="waterPercentInput"
-                                        />
-                                        <p>%</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm">
-                                <div className="input-group">
-                                    <div className="input-wrapper">
-                                        <input type="text"
-                                               value={this.state.water}
-                                               onFocus={this.handleFocus}
-                                               onChange={this.calculateWeightToPercent}
-                                               className="form-control form-control-lg"
-                                               name="water"
-                                               id="waterInput"
-                                        />
-                                        <p>g</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-sm">
-                                <label className="calculator-label" htmlFor="sourdoughPercentInput">Sourdough</label>
-                            </div>
-                        </div>
-
-                        <div className="row input-row mb-3">
-                            <div className="col-sm first-col">
-                                <div className="input-group">
-                                    <div className="input-wrapper">
-                                        <input type="text"
-                                               value={this.state.sourdoughPercent}
-                                               onFocus={this.handleFocus}
-                                               onChange={this.calculatePercentToWeight}
-                                               className="form-control form-control-lg"
-                                               name="sourdoughPercent"
-                                               id="sourdoughPercentInput"
-                                        />
-                                        <p>%</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm">
-                                <div className="input-group">
-                                    <div className="input-wrapper">
-                                        <input type="text"
-                                               value={this.state.sourdough}
-                                               onFocus={this.handleFocus}
-                                               onChange={this.calculateWeightToPercent}
-                                               className="form-control form-control-lg"
-                                               name="sourdough"
-                                               id="sourdoughInput"
-                                        />
-                                        <p>g</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-sm">
-                                <label className="calculator-label" htmlFor="saltPercentInput">Salt</label>
-                            </div>
-                        </div>
-
-                        <div className="row input-row mb-2">
-                            <div className="col-sm first-col">
-                                <div className="input-group">
-                                    <div className="input-wrapper">
-                                        <input type="text"
-                                               value={this.state.saltPercent}
-                                               onFocus={this.handleFocus}
-                                               onChange={this.calculatePercentToWeight}
-                                               className="form-control form-control-lg"
-                                               name="saltPercent"
-                                               id="saltPercentInput"
-                                        />
-                                        <p>%</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm">
-                                <div className="input-group">
-                                    <div className="input-wrapper">
-                                        <input type="text"
-                                               value={this.state.salt}
-                                               onFocus={this.handleFocus}
-                                               onChange={this.calculateWeightToPercent}
-                                               className="form-control form-control-lg"
-                                               name="salt"
-                                               id="saltInput"
-                                        />
-                                        <p>g</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </form>
                 </div>
+
+                <Button variant="primary" onClick={this.handleShow}>
+                    Add ingredients
+                </Button>
+
+                <Modal show={this.state.showModal} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Add Ingredients</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <form>
+
+
+                            <div className="custom-control custom-checkbox checkbox-lg">
+                                <input type="checkbox" className="custom-control-input" id="checkbox-3"/>
+                                <label className="custom-control-label" htmlFor="checkbox-3">Extra largecheckbox</label>
+                            </div>
+
+                        </form>
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.handleClose}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
             </React.Fragment>
         );
     }
