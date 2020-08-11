@@ -128,7 +128,7 @@ class Calculator extends Component {
         if (!ingredient.selected) {
             return null;
         }
-        
+
         return (
             <React.Fragment key={ingredientKey}>
                 <div className="row">
