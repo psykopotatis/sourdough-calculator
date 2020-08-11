@@ -57,6 +57,7 @@ class Calculator extends Component {
         const percent = parseInt(event.target.value) || 0;
         let weight = this.round(this.state.ingredients.flour.weight * (percent / 100));
         const key = event.target.name.replace('Percent', '');
+        console.log('calculatePercentToWeight', percent, weight, key);
 
         let ingredients = Object.assign({}, this.state.ingredients);
         ingredients[key].weight = weight;
@@ -66,14 +67,16 @@ class Calculator extends Component {
     };
 
     calculateWeightToPercent(event) {
-        const grams = parseInt(event.target.value) || 0;
-        let percent = this.round((grams / this.state.ingredients.flour.weight) * 100);
-        const key = event.target.name + 'Percent';
+        const weight = parseInt(event.target.value) || 0;
+        let percent = this.round((weight / this.state.ingredients.flour.weight) * 100);
+        const key = event.target.name;
+        console.log('calculateWeightToPercent', percent, weight, key);
 
-        this.setState({
-            [key]: percent,
-            [event.target.name]: grams
-        });
+        let ingredients = Object.assign({}, this.state.ingredients);
+        ingredients[key].weight = weight;
+        ingredients[key].percent = percent;
+
+        this.setState(ingredients);
     };
 
     round(n) {
@@ -119,10 +122,9 @@ class Calculator extends Component {
         })
     };
 
-
     renderRow(value, key) {
         return (
-            <React.Fragment key={key+value.weight}>
+            <React.Fragment key={key}>
                 <div className="row">
                     <div className="col-sm">
                         <label className="calculator-label" htmlFor={key + "PercentInput"}>{key}</label>
@@ -170,10 +172,7 @@ class Calculator extends Component {
             <React.Fragment>
                 <div className="mb-5">
                     <form id="calculatorForm">
-
-
                         {map(this.state.ingredients, this.renderRow)}
-
                     </form>
                 </div>
 
@@ -187,15 +186,11 @@ class Calculator extends Component {
                     </Modal.Header>
                     <Modal.Body>
                         <form>
-
-
                             <div className="custom-control custom-checkbox checkbox-lg">
                                 <input type="checkbox" className="custom-control-input" id="checkbox-3"/>
-                                <label className="custom-control-label" htmlFor="checkbox-3">Extra largecheckbox</label>
+                                <label className="custom-control-label" htmlFor="checkbox-3">Extra large checkbox</label>
                             </div>
-
                         </form>
-
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleClose}>
@@ -203,7 +198,6 @@ class Calculator extends Component {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-
             </React.Fragment>
         );
     }
