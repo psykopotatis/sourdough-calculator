@@ -124,12 +124,16 @@ class Calculator extends Component {
         })
     };
 
-    renderRow(value, key) {
+    renderRow(ingredient, ingredientKey) {
+        if (!ingredient.selected) {
+            return null;
+        }
+        
         return (
-            <React.Fragment key={key}>
+            <React.Fragment key={ingredientKey}>
                 <div className="row">
                     <div className="col-sm">
-                        <label className="calculator-label" htmlFor={key + "PercentInput"}>{key}</label>
+                        <label className="calculator-label" htmlFor={ingredientKey + "PercentInput"}>{ingredientKey}</label>
                     </div>
                 </div>
 
@@ -138,12 +142,12 @@ class Calculator extends Component {
                         <div className="input-group">
                             <div className="input-wrapper">
                                 <input type="text"
-                                       value={value.percent}
+                                       value={ingredient.percent}
                                        onFocus={this.handleFocus}
                                        onChange={this.calculatePercentToWeight}
                                        className="form-control form-control-lg"
-                                       name={key + "Percent"}
-                                       id={key + "PercentInput"}
+                                       name={ingredientKey + "Percent"}
+                                       id={ingredientKey + "PercentInput"}
                                 />
                                 <p>%</p>
                             </div>
@@ -153,12 +157,12 @@ class Calculator extends Component {
                         <div className="input-group">
                             <div className="input-wrapper">
                                 <input type="text"
-                                       value={value.weight}
+                                       value={ingredient.weight}
                                        onFocus={this.handleFocus}
                                        onChange={this.calculateWeightToPercent}
                                        className="form-control form-control-lg"
-                                       name={key}
-                                       id={key + "Input"}
+                                       name={ingredientKey}
+                                       id={ingredientKey + "Input"}
                                 />
                                 <p>g</p>
                             </div>
