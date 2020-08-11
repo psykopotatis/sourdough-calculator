@@ -122,7 +122,7 @@ class Calculator extends Component {
 
     renderRow(value, key) {
         return (
-            <React.Fragment>
+            <React.Fragment key={key+value.weight}>
                 <div className="row">
                     <div className="col-sm">
                         <label className="calculator-label" htmlFor={key + "PercentInput"}>{key}</label>
