@@ -42,6 +42,8 @@ class Calculator extends Component {
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.renderRow = this.renderRow.bind(this);
+        this.renderCheckboxes = this.renderCheckboxes.bind(this);
+        this.onCheckboxChange = this.onCheckboxChange.bind(this);
     }
 
     handleClick(e) {
@@ -167,6 +169,31 @@ class Calculator extends Component {
         );
     };
 
+    renderCheckboxes(ingredient, ingredientKey) {
+        return (
+            <React.Fragment key={ingredientKey+ingredient.weight}>
+                <div className="custom-control custom-checkbox checkbox-lg">
+                    <input type="checkbox"
+                           name={ingredientKey}
+                           className="custom-control-input"
+                           id={ingredientKey}
+                           onChange={this.onCheckboxChange}
+                           checked={this.state.ingredients[ingredientKey].selected}
+                    />
+                    <label className="custom-control-label" htmlFor={ingredientKey}>{ingredientKey}</label>
+                </div>
+            </React.Fragment>
+        );
+    };
+
+    onCheckboxChange(event) {
+        let ingredients = Object.assign({}, this.state.ingredients);
+        const ingredientKey = event.target.name;
+        ingredients[ingredientKey].selected = !ingredients[ingredientKey].selected;
+
+        this.setState(ingredients);
+    };
+
     render() {
         return (
             <React.Fragment>
@@ -186,10 +213,7 @@ class Calculator extends Component {
                     </Modal.Header>
                     <Modal.Body>
                         <form>
-                            <div className="custom-control custom-checkbox checkbox-lg">
-                                <input type="checkbox" className="custom-control-input" id="checkbox-3"/>
-                                <label className="custom-control-label" htmlFor="checkbox-3">Extra large checkbox</label>
-                            </div>
+                            {map(this.state.ingredients, this.renderCheckboxes)}
                         </form>
                     </Modal.Body>
                     <Modal.Footer>
