@@ -3,32 +3,53 @@ import './Calculator.css'
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import map from 'lodash/map';
+import each from 'lodash/each';
 
 
 class Calculator extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            flour: {
+                weight: 1000,
+                percent: 100,
+                selected: true
+            },
             ingredients: {
-                flour: {
-                    weight: 1000,
-                    percent: 100,
-                    selected: true
-                },
                 water: {
                     weight: 800,
                     percent: 80,
                     selected: true
+                },
+                milk: {
+                    weight: 0,
+                    percent: 0,
+                    selected: false
+                },
+                yoghurt: {
+                    weight: 0,
+                    percent: 0,
+                    selected: false
                 },
                 sourdough: {
                     weight: 150,
                     percent: 15,
                     selected: true
                 },
+                butter: {
+                    weight: 0,
+                    percent: 0,
+                    selected: false
+                },
                 salt: {
                     weight: 20,
                     percent: 2,
                     selected: true
+                },
+                sugar: {
+                    weight: 0,
+                    percent: 0,
+                    selected: false
                 },
 
             },
@@ -57,7 +78,7 @@ class Calculator extends Component {
 
     calculatePercentToWeight(event) {
         const percent = parseInt(event.target.value) || 0;
-        let weight = this.round(this.state.ingredients.flour.weight * (percent / 100));
+        let weight = this.round(this.state.flour.weight * (percent / 100));
         const key = event.target.name.replace('Percent', '');
         console.log('calculatePercentToWeight', percent, weight, key);
 
@@ -70,7 +91,7 @@ class Calculator extends Component {
 
     calculateWeightToPercent(event) {
         const weight = parseInt(event.target.value) || 0;
-        let percent = this.round((weight / this.state.ingredients.flour.weight) * 100);
+        let percent = this.round((weight / this.state.flour.weight) * 100);
         const key = event.target.name;
         console.log('calculateWeightToPercent', percent, weight, key);
 
@@ -96,16 +117,21 @@ class Calculator extends Component {
     onFlourInputChange(event) {
         const flour = parseInt(event.target.value) || 0;
 
-        const water = this.round(flour * (this.state.waterPercent / 100));
-        const sourdough = this.round(flour * (this.state.sourdoughPercent / 100));
-        const salt = this.round(flour * (this.state.saltPercent / 100));
+        let ingredients = Object.assign({}, this.state.ingredients);
+        each(ingredients, (val, key) => {
+            val.weight = this.round(flour * (val.percent / 100));
+        });
 
         this.setState({
-            flour: flour,
-            water: water,
-            sourdough: sourdough,
-            salt: salt,
-        });
+                flour: {
+                    weight: flour,
+                    percent: 100,
+                    selected: true
+                },
+                ingredients
+            }
+        );
+
     };
 
     handleFocus(event) {
@@ -133,7 +159,8 @@ class Calculator extends Component {
             <React.Fragment key={ingredientKey}>
                 <div className="row">
                     <div className="col-sm">
-                        <label className="calculator-label" htmlFor={ingredientKey + "PercentInput"}>{ingredientKey}</label>
+                        <label className="calculator-label"
+                               htmlFor={ingredientKey + "PercentInput"}>{ingredientKey}</label>
                     </div>
                 </div>
 
@@ -175,7 +202,7 @@ class Calculator extends Component {
 
     renderCheckboxes(ingredient, ingredientKey) {
         return (
-            <React.Fragment key={ingredientKey+ingredient.weight}>
+            <React.Fragment key={ingredientKey + ingredient.weight}>
                 <div className="custom-control custom-checkbox checkbox-lg">
                     <input type="checkbox"
                            name={ingredientKey}
@@ -203,6 +230,33 @@ class Calculator extends Component {
             <React.Fragment>
                 <div className="mb-5">
                     <form id="calculatorForm">
+                        <div className="row">
+                            <div className="col-sm">
+                                <label className="calculator-label"
+                                       htmlFor="flourInput">Flour</label>
+                            </div>
+                        </div>
+
+                        <div className="row input-row mb-3">
+                            <div className="col-sm first-col">
+                                <div className="input-group">
+                                    <div className="input-wrapper">
+                                        <input type="text"
+                                               value={this.state.flour.weight}
+                                               onFocus={this.handleFocus}
+                                               onChange={this.onFlourInputChange}
+                                               className="form-control form-control-lg"
+                                               name="flour"
+                                               id="flourInput"
+                                        />
+                                        <p>g</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-sm">
+
+                            </div>
+                        </div>
                         {map(this.state.ingredients, this.renderRow)}
                     </form>
                 </div>
