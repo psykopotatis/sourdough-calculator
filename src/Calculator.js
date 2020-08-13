@@ -11,42 +11,50 @@ class Calculator extends Component {
         super(props);
         this.state = {
             flour: {
+                name: 'Mjöl',
                 weight: 1000,
                 percent: 100,
                 selected: true
             },
             ingredients: {
                 water: {
+                    name: 'Vatten',
                     weight: 800,
                     percent: 80,
                     selected: true
                 },
                 milk: {
+                    name: 'Mjölk',
                     weight: 0,
                     percent: 0,
                     selected: false
                 },
                 yoghurt: {
+                    name: 'Yoghurt',
                     weight: 0,
                     percent: 0,
                     selected: false
                 },
                 sourdough: {
+                    name: 'Surdeg',
                     weight: 150,
                     percent: 15,
                     selected: true
                 },
                 butter: {
+                    name: 'Smör',
                     weight: 0,
                     percent: 0,
                     selected: false
                 },
                 salt: {
+                    name: 'Salt',
                     weight: 20,
                     percent: 2,
                     selected: true
                 },
                 sugar: {
+                    name: 'Socker',
                     weight: 0,
                     percent: 0,
                     selected: false
@@ -160,7 +168,7 @@ class Calculator extends Component {
                 <div className="row">
                     <div className="col-sm">
                         <label className="calculator-label"
-                               htmlFor={ingredientKey + "PercentInput"}>{ingredientKey}</label>
+                               htmlFor={ingredientKey + "PercentInput"}>{ingredient.name}</label>
                     </div>
                 </div>
 
@@ -211,7 +219,7 @@ class Calculator extends Component {
                            onChange={this.onCheckboxChange}
                            checked={this.state.ingredients[ingredientKey].selected}
                     />
-                    <label className="custom-control-label" htmlFor={ingredientKey}>{ingredientKey}</label>
+                    <label className="custom-control-label" htmlFor={ingredientKey}>{ingredient.name}</label>
                 </div>
             </React.Fragment>
         );
@@ -233,7 +241,7 @@ class Calculator extends Component {
                         <div className="row">
                             <div className="col-sm">
                                 <label className="calculator-label"
-                                       htmlFor="flourInput">Flour</label>
+                                       htmlFor="flourInput">Mjöl</label>
                             </div>
                         </div>
 
@@ -262,27 +270,38 @@ class Calculator extends Component {
                 </div>
 
                 <Button variant="primary" onClick={this.handleShow}>
-                    Add ingredients
+                    Ändra ingredienser
                 </Button>
 
                 <Modal show={this.state.showModal} onHide={this.handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Add Ingredients</Modal.Title>
+                        <Modal.Title>Ändra ingredienser</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <form>
-                            {map(this.state.ingredients, this.renderCheckboxes)}
+                            <div className="custom-control custom-checkbox checkbox-lg">
+                                <input type="checkbox"
+                                       name="flourCheckbox"
+                                       className="custom-control-input"
+                                       id="flourCheckbox"
+                                       checked
+                                       disabled
+                                />
+                                <label className="custom-control-label"
+                                       htmlFor="flourCheckbox">Mjöl</label>
+                            </div>
+                                {map(this.state.ingredients, this.renderCheckboxes)}
                         </form>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleClose}>
-                            Close
+                            Stäng
                         </Button>
                     </Modal.Footer>
                 </Modal>
             </React.Fragment>
-        );
+    );
     }
-}
+    }
 
-export default Calculator;
+    export default Calculator;

@@ -1,0 +1,51 @@
+<div class="save-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <p><strong>Awesome recipe? Save it!</strong></p>
+                <label for="nameInput">Name:</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="nameInput">
+                </div>
+                <button type="button" class="btn btn-primary saveButton">Save recipe</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        console.log('ready');
+        $('.saveButton').click(function () {
+            console.log('click');
+            const data = {
+                'flour': 123
+            };
+
+            const name = $('#nameInput').val();
+            console.log(name);
+            const encodedName = encodeURIComponent(name);
+            console.log(encodedName);
+
+            const d = $('#calculatorForm').serialize() + '&name=' + encodedName;
+            console.log(d);
+
+            $.ajax({
+                url: "/save",
+                type: "POST",
+                data: d,
+
+                success: function (response) {
+                    console.log('oko');
+                    console.log(response.result);
+                    console.log(response.url);
+                    window.location.href = response.url; //relative to domain
+                },
+                error: function (response) {
+                    console.log('err');
+                    console.log(response);
+                }
+            });
+        });
+    });
+</script>
