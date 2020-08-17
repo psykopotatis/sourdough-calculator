@@ -100,7 +100,7 @@ class Calculator extends Component {
         const weight = parseInt(event.target.value) || 0;
         let percent = this.round((weight / this.state.flour.weight) * 100);
         const key = event.target.name;
-        
+
         let ingredients = Object.assign({}, this.state.ingredients);
         ingredients[key].weight = weight;
         ingredients[key].percent = percent;
@@ -288,7 +288,7 @@ class Calculator extends Component {
                                 <label className="custom-control-label"
                                        htmlFor="flourCheckbox">Mjöl</label>
                             </div>
-                                {map(this.state.ingredients, this.renderCheckboxes)}
+                            {map(this.state.ingredients, this.renderCheckboxes)}
                         </form>
                     </Modal.Body>
                     <Modal.Footer>
@@ -298,8 +298,8 @@ class Calculator extends Component {
                     </Modal.Footer>
                 </Modal>
             </React.Fragment>
-    );
+        );
     }
-    }
+}
 
-    export default Calculator;
+export default Calculator;
