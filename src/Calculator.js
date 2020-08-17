@@ -88,7 +88,6 @@ class Calculator extends Component {
         const percent = parseInt(event.target.value) || 0;
         let weight = this.round(this.state.flour.weight * (percent / 100));
         const key = event.target.name.replace('Percent', '');
-        console.log('calculatePercentToWeight', percent, weight, key);
 
         let ingredients = Object.assign({}, this.state.ingredients);
         ingredients[key].weight = weight;
@@ -101,8 +100,7 @@ class Calculator extends Component {
         const weight = parseInt(event.target.value) || 0;
         let percent = this.round((weight / this.state.flour.weight) * 100);
         const key = event.target.name;
-        console.log('calculateWeightToPercent', percent, weight, key);
-
+        
         let ingredients = Object.assign({}, this.state.ingredients);
         ingredients[key].weight = weight;
         ingredients[key].percent = percent;
