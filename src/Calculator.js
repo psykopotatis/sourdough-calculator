@@ -73,6 +73,7 @@ class Calculator extends Component {
         this.renderRow = this.renderRow.bind(this);
         this.renderCheckboxes = this.renderCheckboxes.bind(this);
         this.onCheckboxChange = this.onCheckboxChange.bind(this);
+        this.getDoughTotal = this.getDoughTotal.bind(this);
     }
 
     handleClick(e) {
@@ -231,10 +232,20 @@ class Calculator extends Component {
         this.setState(ingredients);
     };
 
+    getDoughTotal() {
+        let total = parseInt(this.state.flour.weight);
+        each(this.state.ingredients, (val, key) => {
+            if (val.selected) {
+                total = total + parseInt(val.weight);
+            }
+        });
+        return total;
+    };
+
     render() {
         return (
             <React.Fragment>
-                <div className="mb-5">
+                <div className="mb-4">
                     <form id="calculatorForm">
                         <div className="row">
                             <div className="col-sm">
@@ -267,9 +278,20 @@ class Calculator extends Component {
                     </form>
                 </div>
 
-                <Button variant="primary" onClick={this.handleShow}>
-                    Ändra ingredienser
-                </Button>
+                <div className="row mb-4">
+                    <div className="col-sm">
+                        <Button variant="primary" onClick={this.handleShow}>
+                            Ändra ingredienser
+                        </Button>
+                    </div>
+                </div>
+
+                <div className="row mb-5">
+                    <div className="col-sm">
+                        <h3>Vikt</h3>
+                        <p>Totalt väger din deg <strong>{this.getDoughTotal()} gram</strong>. Du kan göra två limpor om {this.getDoughTotal()/2} gram vardera.</p>
+                    </div>
+                </div>
 
                 <Modal show={this.state.showModal} onHide={this.handleClose}>
                     <Modal.Header closeButton>
