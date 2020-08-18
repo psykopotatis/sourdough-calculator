@@ -278,7 +278,7 @@ class Calculator extends Component {
                     </form>
                 </div>
 
-                <div className="row mb-4">
+                <div className="row mb-5">
                     <div className="col-sm">
                         <Button variant="primary" onClick={this.handleShow}>
                             Ändra ingredienser
@@ -287,9 +287,9 @@ class Calculator extends Component {
                 </div>
 
                 <div className="row mb-5">
-                    <div className="col-sm">
-                        <h3>Vikt</h3>
-                        <p>Totalt väger din deg <strong>{this.getDoughTotal()} gram</strong>. Du kan göra två limpor om {this.getDoughTotal()/2} gram vardera.</p>
+                    <div className="col">
+                        <p><strong>Vikt</strong></p>
+                        <p>Totalt väger din deg <strong>{this.getDoughTotal()} gram</strong>. Du kan göra <strong>två limpor</strong> som väger <strong>{this.getDoughTotal()/2} gram</strong> vardera.</p>
                     </div>
                 </div>
 
