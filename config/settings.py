@@ -43,6 +43,8 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    # Disable Django static file handling and allow WhiteNoise to take over
+    'whitenoise.runserver_nostatic',
     'sourdough.apps.SourdoughConfig',
     'django.contrib.admin',
     'django.contrib.auth',
