@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import map from 'lodash/map';
 import each from 'lodash/each';
+import axios from 'axios';
 
 
 class Calculator extends Component {
@@ -74,6 +75,7 @@ class Calculator extends Component {
         this.renderCheckboxes = this.renderCheckboxes.bind(this);
         this.onCheckboxChange = this.onCheckboxChange.bind(this);
         this.getDoughTotal = this.getDoughTotal.bind(this);
+        this.handleSave = this.handleSave.bind(this);
     }
 
     handleClick(e) {
@@ -242,6 +244,19 @@ class Calculator extends Component {
         return total;
     };
 
+    handleSave(event) {
+        console.log('save');
+        console.log(this.state.ingredients);
+
+        axios({
+            method: 'post',
+            url: '/save',
+            data: {
+                ingredients: this.state.ingredients
+            }
+        });
+    };
+
     render() {
         return (
             <React.Fragment>
@@ -289,7 +304,26 @@ class Calculator extends Component {
                 <div className="row mb-5">
                     <div className="col">
                         <p><strong>Vikt</strong></p>
-                        <p>Totalt väger din deg <strong>{this.getDoughTotal()} gram</strong>. Du kan göra <strong>två limpor</strong> som väger <strong>{this.getDoughTotal()/2} gram</strong> vardera.</p>
+                        <p>Totalt väger din deg <strong>{this.getDoughTotal()} gram</strong>. Du kan göra <strong>två
+                            limpor</strong> som väger <strong>{this.getDoughTotal() / 2} gram</strong> vardera.</p>
+                    </div>
+                </div>
+
+                <div className="save-section py-5">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-sm">
+                                <p><strong>Awesome recipe? Save it!</strong></p>
+                                <label htmlFor="nameInput">Name:</label>
+                                <div className="input-group mb-3">
+                                    <input type="text" className="form-control" id="nameInput"/>
+                                </div>
+                                <button type="button"
+                                        onClick={this.handleSave}
+                                        className="btn btn-primary saveButton">Save recipe
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
