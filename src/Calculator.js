@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import map from 'lodash/map';
 import each from 'lodash/each';
+import clone from 'lodash/clone';
 import axios from 'axios';
 
 
@@ -11,6 +12,7 @@ class Calculator extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: '',
             flour: {
                 name: 'Mjöl',
                 weight: 1000,
@@ -76,6 +78,7 @@ class Calculator extends Component {
         this.onCheckboxChange = this.onCheckboxChange.bind(this);
         this.getDoughTotal = this.getDoughTotal.bind(this);
         this.handleSave = this.handleSave.bind(this);
+        this.onNameInputChange = this.onNameInputChange.bind(this);
     }
 
     handleClick(e) {
@@ -247,16 +250,29 @@ class Calculator extends Component {
     handleSave(event) {
         console.log('save');
         console.log(this.state.ingredients);
+        const ingredients = clone(this.state.ingredients);
+        console.log(ingredients);
+        ingredients['flour'] = this.state.flour;
+        console.log(ingredients);
 
         axios({
             method: 'post',
             url: '/save',
             data: {
-                ingredients: this.state.ingredients
+                name: this.state.name,
+                ingredients: ingredients
             }
         });
     };
 
+    onNameInputChange(event) {
+        console.log('onNameInputChange:', event.target.value);
+        this.setState({
+                name: event.target.value
+            }
+        );
+
+    };
     render() {
         return (
             <React.Fragment>
@@ -316,7 +332,12 @@ class Calculator extends Component {
                                 <p><strong>Awesome recipe? Save it!</strong></p>
                                 <label htmlFor="nameInput">Name:</label>
                                 <div className="input-group mb-3">
-                                    <input type="text" className="form-control" id="nameInput"/>
+                                    <input type="text"
+                                           className="form-control"
+                                           id="nameInput"
+                                           value={this.state.name}
+                                           onChange={this.onNameInputChange}
+                                    />
                                 </div>
                                 <button type="button"
                                         onClick={this.handleSave}

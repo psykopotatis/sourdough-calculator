@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.text import slugify
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
-
+import json
 
 # Create your views here.
 from sourdough.models import Recipe
@@ -46,16 +46,25 @@ def vote(request, question_id):
 @csrf_exempt
 def save(request):
     if request.method == "POST":
-        name = request.POST['name']
-        flour = request.POST['flour']
-        water = request.POST['water']
-        sourdough = request.POST['sourdough']
-        salt = request.POST['salt']
-        # todo. parse int/float
+        print(request.POST)
+        print(request.body)
+        json_data = json.loads(request.body)
+        print(json_data)
+        print(json_data.get('ingredients'))
+        ingredients = json_data.get('ingredients')
+        name = json_data.get('name')
+        print(name)
+        for key in ingredients.keys():
+            print(ingredients[key])
+            ingredient = ingredients[key]
+            name = ingredient.get('name')
+            weight = ingredient.get('weight')
+            percent = ingredient.get('percent')
+            selected = ingredient.get('selected')
+            print(name, weight, percent)
+            # todo. parse int/float
 
         print(name)
-        print(flour)
-        print(request.POST)
 
         recipe = Recipe(
             name=name,
@@ -86,5 +95,3 @@ def save(request):
             'url': ''
         }
         return JsonResponse(data)
-
-
