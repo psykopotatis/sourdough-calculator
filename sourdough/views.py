@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404, render
 import json
 
 # Create your views here.
-from sourdough.models import Recipe
+from sourdough.models import Recipe, Ingredient
 
 
 def index(request):
@@ -52,29 +52,32 @@ def save(request):
         print(json_data)
         print(json_data.get('ingredients'))
         ingredients = json_data.get('ingredients')
-        name = json_data.get('name')
-        print(name)
+        recipe_name = json_data.get('name')
+        print(recipe_name)
+        selected_ingredients = []
         for key in ingredients.keys():
             print(ingredients[key])
             ingredient = ingredients[key]
             name = ingredient.get('name')
-            weight = ingredient.get('weight')
-            percent = ingredient.get('percent')
+            weight = float(ingredient.get('weight'))
+            percent = float(ingredient.get('percent'))
             selected = ingredient.get('selected')
             print(name, weight, percent)
-            # todo. parse int/float
 
-        print(name)
+            if selected:
+                ingredient = Ingredient(
+                    name=name,
+                    weight=weight,
+                    percent=percent
+                )
+                ingredient.save()
+                selected_ingredients.append(ingredient)
 
         recipe = Recipe(
-            name=name,
-            flour=float(flour),
-            water=float(water),
-            sourdough=float(sourdough),
-            salt=float(salt)
+            name=recipe_name
         )
-
         recipe.save()
+        recipe.ingredients.add(*selected_ingredients)
 
         # What does it slugify if name is empty?
         slug = slugify(recipe.name)

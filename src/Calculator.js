@@ -64,7 +64,9 @@ class Calculator extends Component {
                 },
 
             },
-            showModal: false
+            showModal: false,
+            saveResult: null,
+            redirectUrl: null
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -248,31 +250,57 @@ class Calculator extends Component {
     };
 
     handleSave(event) {
-        console.log('save');
+        console.log('handleSave');
         console.log(this.state.ingredients);
         const ingredients = clone(this.state.ingredients);
         console.log(ingredients);
         ingredients['flour'] = this.state.flour;
         console.log(ingredients);
 
-        axios({
-            method: 'post',
-            url: '/save',
-            data: {
-                name: this.state.name,
-                ingredients: ingredients
+        axios.post('/save', {
+            name: this.state.name,
+            ingredients: ingredients
+        }).then((response) => {
+            // handle success
+            // data:
+            // result: "ok"
+            // url: "/recipe/25/sdf"
+            console.log(response);
+            console.log(response.data.result);
+            console.log(response.data.result === "ok");
+            console.log(response.data.url);
+            if (response.data.result === "ok") {
+                this.setState({
+                    saveResult: 'Ok!',
+                    redirectUrl: 'Redirecting to: ' + response.data.url
+                });
+
+                console.log('redirecting to: ' + response.data.url);
+                console.log('in 3 seconds ...');
+
+                setTimeout(function () {
+                    console.log('ok');
+                    window.location.replace(response.data.url);
+                }, 3000);
             }
-        });
+        })
+            .catch((error) => {
+                // handle error
+                console.log(error);
+                this.setState({
+                    saveResult: error
+                });
+            });
     };
 
     onNameInputChange(event) {
-        console.log('onNameInputChange:', event.target.value);
         this.setState({
                 name: event.target.value
             }
         );
 
     };
+
     render() {
         return (
             <React.Fragment>
@@ -326,26 +354,33 @@ class Calculator extends Component {
                 </div>
 
                 <div className="save-section py-5">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-sm">
-                                <p><strong>Awesome recipe? Save it!</strong></p>
-                                <label htmlFor="nameInput">Name:</label>
-                                <div className="input-group mb-3">
-                                    <input type="text"
-                                           className="form-control"
-                                           id="nameInput"
-                                           value={this.state.name}
-                                           onChange={this.onNameInputChange}
-                                    />
-                                </div>
-                                <button type="button"
-                                        onClick={this.handleSave}
-                                        className="btn btn-primary saveButton">Save recipe
-                                </button>
+                    <div className="row pb-3">
+                        <div className="col-sm">
+                            <p><strong>Awesome recipe? Save it!</strong></p>
+                            <label htmlFor="nameInput">Name:</label>
+                            <div className="input-group mb-3">
+                                <input type="text"
+                                       className="form-control"
+                                       id="nameInput"
+                                       value={this.state.name}
+                                       onChange={this.onNameInputChange}
+                                />
+                            </div>
+                            <button type="button"
+                                    onClick={this.handleSave}
+                                    className="btn btn-primary saveButton">Save recipe
+                            </button>
+                        </div>
+                    </div>
+                    {this.state.saveResult &&
+                    <div className="row">
+                        <div className="col-sm">
+                            <div className="alert alert-success" role="alert">
+                                <strong>{this.state.saveResult}</strong> {this.state.redirectUrl}
                             </div>
                         </div>
                     </div>
+                    }
                 </div>
 
                 <Modal show={this.state.showModal} onHide={this.handleClose}>
