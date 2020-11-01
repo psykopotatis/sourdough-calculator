@@ -272,7 +272,7 @@ class Calculator extends Component {
             if (response.data.result === "ok") {
                 this.setState({
                     saveResult: 'Ok!',
-                    redirectUrl: 'Redirecting to: ' + response.data.url
+                    redirectUrl: 'Skickar dig till: ' + response.data.url
                 });
 
                 console.log('redirecting to: ' + response.data.url);
@@ -356,8 +356,8 @@ class Calculator extends Component {
                 <div className="save-section py-5">
                     <div className="row pb-3">
                         <div className="col-sm">
-                            <p><strong>Awesome recipe? Save it!</strong></p>
-                            <label htmlFor="nameInput">Name:</label>
+                            <p><strong>Bästa receptet? Spara det!</strong></p>
+                            <label htmlFor="nameInput">Namn:</label>
                             <div className="input-group mb-3">
                                 <input type="text"
                                        className="form-control"
@@ -368,7 +368,7 @@ class Calculator extends Component {
                             </div>
                             <button type="button"
                                     onClick={this.handleSave}
-                                    className="btn btn-primary saveButton">Save recipe
+                                    className="btn btn-primary saveButton">Spara recept
                             </button>
                         </div>
                     </div>
