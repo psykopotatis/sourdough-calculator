@@ -32,7 +32,7 @@ STATICFILES_DIRS = (
 SECRET_KEY = 'rjdxb^k=4r3!f1k+sjs0qu3grwxmaw(w61=#29jn)hrg4a)6ju'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -99,12 +99,20 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# Parse database configuration from $DATABASE_URL
+
+# we only need the engine name, as heroku takes care of the rest
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
     }
 }
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+
 
 
 # Password validation
@@ -138,4 +146,13 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+# try to load local_settings.py if it exists
+try:
+    print("try to load local_settings.py if it exists")
+    from local_settings import *
+except Exception as e:
+    print("try to load local_settings.py if it exists: error")
+    print(e)
 
