@@ -14,20 +14,20 @@ class Calculator extends Component {
         this.state = {
             name: '',
             flour: {
-                name: 'Mjöl',
+                name: 'Flour',
                 weight: 1000,
                 percent: 100,
                 selected: true
             },
             ingredients: {
                 water: {
-                    name: 'Vatten',
+                    name: 'Water',
                     weight: 800,
                     percent: 80,
                     selected: true
                 },
                 milk: {
-                    name: 'Mjölk',
+                    name: 'Milk',
                     weight: 0,
                     percent: 0,
                     selected: false
@@ -39,13 +39,13 @@ class Calculator extends Component {
                     selected: false
                 },
                 sourdough: {
-                    name: 'Surdeg',
+                    name: 'Sourdough starter',
                     weight: 150,
                     percent: 15,
                     selected: true
                 },
                 butter: {
-                    name: 'Smör',
+                    name: 'Butter',
                     weight: 0,
                     percent: 0,
                     selected: false
@@ -57,7 +57,7 @@ class Calculator extends Component {
                     selected: true
                 },
                 sugar: {
-                    name: 'Socker',
+                    name: 'Sugar',
                     weight: 0,
                     percent: 0,
                     selected: false
@@ -272,7 +272,7 @@ class Calculator extends Component {
             if (response.data.result === "ok") {
                 this.setState({
                     saveResult: 'Ok!',
-                    redirectUrl: 'Skickar dig till: ' + response.data.url
+                    redirectUrl: 'Redirecting to: ' + response.data.url
                 });
 
                 console.log('redirecting to: ' + response.data.url);
@@ -309,7 +309,7 @@ class Calculator extends Component {
                         <div className="row">
                             <div className="col-sm">
                                 <label className="calculator-label"
-                                       htmlFor="flourInput">Mjöl</label>
+                                       htmlFor="flourInput">Flour</label>
                             </div>
                         </div>
 
@@ -340,24 +340,24 @@ class Calculator extends Component {
                 <div className="row mb-5">
                     <div className="col-sm">
                         <Button variant="primary" onClick={this.handleShow}>
-                            Ändra ingredienser
+                            Change ingredients
                         </Button>
                     </div>
                 </div>
 
                 <div className="row mb-5">
                     <div className="col">
-                        <p><strong>Vikt</strong></p>
-                        <p>Totalt väger din deg <strong>{this.getDoughTotal()} gram</strong>. Du kan göra <strong>två
-                            limpor</strong> som väger <strong>{this.getDoughTotal() / 2} gram</strong> vardera.</p>
+                        <p><strong>Weight</strong></p>
+                        <p>Your dough weighs <strong>{this.getDoughTotal()} grams</strong>. You can make <strong>two
+                            loaves</strong> that weigh <strong>{this.getDoughTotal() / 2} grams</strong> each.</p>
                     </div>
                 </div>
 
                 <div className="save-section py-5">
                     <div className="row pb-3">
                         <div className="col-sm">
-                            <p><strong>Bästa receptet? Spara det!</strong></p>
-                            <label htmlFor="nameInput">Namn:</label>
+                            <p><i className="far fa-save"/> <strong>Best recipe? Save it!</strong></p>
+                            <label htmlFor="nameInput">Name:</label>
                             <div className="input-group mb-3">
                                 <input type="text"
                                        className="form-control"
@@ -368,7 +368,7 @@ class Calculator extends Component {
                             </div>
                             <button type="button"
                                     onClick={this.handleSave}
-                                    className="btn btn-primary saveButton">Spara recept
+                                    className="btn btn-primary saveButton">Save recipe!
                             </button>
                         </div>
                     </div>
@@ -385,7 +385,7 @@ class Calculator extends Component {
 
                 <Modal show={this.state.showModal} onHide={this.handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Ändra ingredienser</Modal.Title>
+                        <Modal.Title>Change ingredients</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <form>
@@ -398,14 +398,14 @@ class Calculator extends Component {
                                        disabled
                                 />
                                 <label className="custom-control-label"
-                                       htmlFor="flourCheckbox">Mjöl</label>
+                                       htmlFor="flourCheckbox">Flour</label>
                             </div>
                             {map(this.state.ingredients, this.renderCheckboxes)}
                         </form>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleClose}>
-                            Stäng
+                            Close
                         </Button>
                     </Modal.Footer>
                 </Modal>
