@@ -30,6 +30,7 @@ def detail(request, recipe_id, slug):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     context = {
         'recipe': recipe,
+        'ingredients': recipe.ingredients.all()
     }
     return render(request, 'sourdough/recipe_detail.html', context)
 

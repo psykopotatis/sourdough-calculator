@@ -26,7 +26,15 @@
 
 <div class="py-5 calculator-light">
     <div class="container">
-        <div id="root"></div>
+        <div class="row">
+            <div class="col-sm">
+<ul>
+{% for ingredient in ingredients %}
+    <li>{{ ingredient.name }}: {{ ingredient.weight }} grams</li>
+{% endfor %}
+</ul>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -36,38 +44,6 @@
 <script>
     $(function () {
         console.log('ready');
-        $('.saveButton').click(function () {
-            console.log('click');
-            const data = {
-                'flour': 123
-            };
-
-            const name = $('#nameInput').val();
-            console.log(name);
-            const encodedName = encodeURIComponent(name);
-            console.log(encodedName);
-
-            const d = $('#calculatorForm').serialize() + '&name=' + encodedName;
-            console.log(d);
-
-            $.ajax({
-                url: "/save",
-                type: "POST",
-                data: d,
-
-                success: function (response) {
-                    console.log('oko');
-                    console.log(response.result);
-                    console.log(response.url);
-                    window.location.href = response.url; //relative to domain
-                },
-                error: function (response) {
-                    console.log('err');
-                    console.log(response);
-                }
-            });
-        });
     });
 </script>
-<script src="{% static 'sourdough/app.js' %}"></script>
 {% endblock %}

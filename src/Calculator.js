@@ -251,11 +251,10 @@ class Calculator extends Component {
 
     handleSave(event) {
         console.log('handleSave');
-        console.log(this.state.ingredients);
         const ingredients = clone(this.state.ingredients);
-        console.log(ingredients);
         ingredients['flour'] = this.state.flour;
-        console.log(ingredients);
+        console.log(this.state.name);
+        console.table(ingredients);
 
         axios.post('/save', {
             name: this.state.name,
