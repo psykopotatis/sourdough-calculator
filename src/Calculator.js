@@ -253,6 +253,7 @@ class Calculator extends Component {
         console.log('handleSave');
         const ingredients = clone(this.state.ingredients);
         ingredients['flour'] = this.state.flour;
+        ingredients['flour']['name'] = 'Flour';
         console.log(this.state.name);
         console.table(ingredients);
 
