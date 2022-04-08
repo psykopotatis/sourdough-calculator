@@ -1,6 +1,8 @@
 # sourdough-calculator
 Django sourdough calculator
 
+http://surdeg.herokuapp.com/
+
 Server
 ```
 # create virtual env
